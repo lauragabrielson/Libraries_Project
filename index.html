@@ -7,8 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Library Dashboard</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+  <!-- Custom CSS  -->
+  <link rel="stylesheet" href="static/css/style.css" />
+  
   <link rel="stylesheet" type="text/css" href="./slick/slick.css">
   <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+
+</head>
+<body>
+    <div class="container" style="width:840px; height: 400px;">
+      
+
 </head>
 <body>
     <div class="container">
@@ -22,7 +34,7 @@
       
       
       
-      
+   
       <div class="row">
         <div class="col-sm-12 col-md-4">
           <div id="slick-carousel">
@@ -36,6 +48,7 @@
         </div>
       </div>
 
+      <div id="map"></div>
 
         
     </div>
@@ -51,6 +64,20 @@
 
     <!-- Add d3 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Elements to make the map work-->
+    <!-- API key -->
+    <script type="text/javascript" src="static/js/config.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+    <!-- D3 CDN -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- JS -->
+    <!-- <script type="text/javascript" src="static/js/just-crime.js"></script> -->
+    <script type="text/javascript" src="static/JS/map.js"></script>
+    <!-- Leaflet heatmap plugin-->
+    <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
+
 
     <!-- Add our script -->
     <script type="text/javascript" src="static/JS/carousel.js"></script>
