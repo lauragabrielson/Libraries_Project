@@ -1,3 +1,5 @@
+drop table if exists libraries_db;
+
 create table libraries (
 id serial primary key,
 state varchar(10),
