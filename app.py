@@ -72,26 +72,53 @@ def donut():
     return jsonify(all_employees)
 
 
-# @app.route("/libraries_map.json")
-# def libraries_map():
-#     ''' Query the database for fighter aircraft and return the results as a JSON. '''
+@app.route("/libraries_map")
+def libraries_map():
+    ''' Query the database for fighter aircraft and return the results as a JSON. '''
 
-#     # Open a session, run the query, and then close the session again
-#     session = Session(engine)
-#     results = session.query(table.librarians, table.msl_librarians).all()
-#     session.close()
+    # Open a session, run the query, and then close the session again
+    session = Session(engine)
+    results = session.query(table.librarians, table.msl_librarians).all()
+    session.close()
 
-#     # Create a list of dictionaries, with each dictionary containing one row from the query. 
-#     all_aircraft = []
-#     for country, iso3, fighteraircraft in results:
-#         dict = {}
-#         dict["country"] = country
-#         dict["iso3"] = iso3
-#         dict["fighteraircraft"] = fighteraircraft
-#         all_aircraft.append(dict)
+    # Create a list of dictionaries, with each dictionary containing one row from the query. 
+    all_aircraft = []
+    for country, iso3, fighteraircraft in results:
+        dict = {}
+        dict["country"] = country
+        dict["iso3"] = iso3
+        dict["fighteraircraft"] = fighteraircraft
+        all_aircraft.append(dict)
 
-#     # Return the jsonified result. 
-#     return jsonify(all_aircraft)
+    # Return the jsonified result. 
+    return jsonify(all_aircraft)
+
+
+@app.route("/libraries_bar")
+def libraries_bar():
+    ''' Query the database for fighter aircraft and return the results as a JSON. '''
+
+    # Open a session, run the query, and then close the session again
+    session = Session(engine)
+    results = session.query(table.print_collection, table.digital_collection, table.audio_collection, table.downloadable_audio, table.physical_video, table.downloadable_video, table.library_name, table.state).all()
+    session.close()
+
+    # Create a list of dictionaries, with each dictionary containing one row from the query. 
+    all_collections = []
+    for print_collection, digital_collection, audio_collection, downloadable_audio, physical_video, downloadable_video, library_name, state in results:
+        dict = {}
+        dict["print_collection"] = print_collection
+        dict["digital_collection"] = digital_collection
+        dict["audio_collection"] = audio_collection
+        dict["downloadable_audio"] = downloadable_audio
+        dict["physical_video"] = physical_video
+        dict["downloadable_video"] = downloadable_video
+        dict["library_name"] = library_name
+        dict["state"] = state
+        all_collections.append(dict)
+
+    # Return the jsonified result. 
+    return jsonify(all_collections)
 
 # @app.route("/population")
 # def QueryPopulation():
