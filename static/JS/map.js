@@ -34,7 +34,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 var url = "http://127.0.0.1:5000/libraries_map"
 
 d3.json(url).then(function(data) {
-  console.log(data);
+  // console.log(data);
 
   var heatArray = [];
 
@@ -44,6 +44,11 @@ d3.json(url).then(function(data) {
 
   };
 
-  console.log(heatArray);
+  // console.log(heatArray);
+
+  var heat = L.heatLayer(heatArray, {
+    radius: 20,
+    blur: 35
+  }).addTo(myMap);
 
 });
