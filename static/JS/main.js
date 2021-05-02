@@ -99,7 +99,7 @@ d3.json("/libraries_bar").then(function (data) {
                   width: 1.5
                 },
             },
-            name: "Collections",
+            name: "Physical",
             orientation: "h"
        
     };
@@ -110,13 +110,17 @@ d3.json("/libraries_bar").then(function (data) {
         type: "bar",
             marker: {
                 color: 'rgb(28, 50, 92)',
-                opacity: 0.9,
+                opacity: 0.8,
+                // line: {
+                //   color: 'rgb(189, 209, 250',
+                //   width: 1.5
+                // },
                 line: {
-                  color: 'rgb(189, 209, 250',
-                  width: 1.5
-                },
+                    color: 'rgb(28, 50, 92)',
+                    width: 1.5
+                  },
             },
-            name: "Digital Collections",
+            name: "Digital",
             orientation: "h"
        
     };
@@ -128,6 +132,7 @@ d3.json("/libraries_bar").then(function (data) {
     var layout = {
         title: "Collections",
         xaxis: { title: "Collection Total"},
+        barmode: "stack"
         // yaxis: { title: "Total"}
     };
 
