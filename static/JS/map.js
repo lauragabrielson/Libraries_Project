@@ -3,7 +3,7 @@ console.log("map.js loaded")
 // Creating map object
 var myMap = L.map("map", {
     center: [39.8283, -98.5795],
-    zoom: 3
+    zoom: 4
   });
 
 // // Use this link to get the json data.
@@ -47,8 +47,8 @@ d3.json(url).then(function(data) {
   // console.log(heatArray);
 
   var heat = L.heatLayer(heatArray, {
-    radius: 20,
-    blur: 35
+    radius: 70,
+    blur: 10
   }).addTo(myMap);
 
 });
