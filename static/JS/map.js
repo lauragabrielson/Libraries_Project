@@ -36,19 +36,19 @@ var url = "http://127.0.0.1:5000/libraries_map"
 d3.json(url).then(function(data) {
   // console.log(data);
 
-  // Create and add heatLayer
-  var heatArray = [];
+  // // Create and add heatLayer
+  // var heatArray = [];
 
-  for (var i = 0; i < data.length; i++) {
+  // for (var i = 0; i < data.length; i++) {
 
-    heatArray.push([data[i].lat, data[i].lon]);
+  //   heatArray.push([data[i].lat, data[i].lon]);
 
-  };
-  console.log(heatArray);
-  var heat = L.heatLayer(heatArray, {
-    radius: 70,
-    blur: 10
-  }).addTo(myMap);
+  // };
+  // console.log(heatArray);
+  // var heat = L.heatLayer(heatArray, {
+  //   radius: 70,
+  //   blur: 10
+  // }).addTo(myMap);
 
   // // Add markers for each location
   // var pinArray = []
@@ -61,6 +61,23 @@ d3.json(url).then(function(data) {
   //     L.marker([data[i].lat, data[i].lon]).addTo(myMap);
   //   }
   // };
- 
+
+  // Let's try some marker clusters
+
+  // Make a marker cluster group
+  var markers = L.markerClusterGroup();
+
+  // Loop through data to get lat/long
+  for (var i = 0; i < data.length; i++) {
+
+    var location = [data[i].lat, data[i].lon]
+
+    if (location) {
+      markers.addLayer(L.marker([data[i].lat, data[i].lon]).bindPopUp(data[i].library_name));
+    }
+  };
+  
+  // Add cluster layer to map
+  myMap.addLayer(markers);
 
 });
