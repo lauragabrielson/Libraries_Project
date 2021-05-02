@@ -29,3 +29,10 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
 
 // // This is where I would need to replace data to serve the locations of libraries
+// Grab JSON data.
+
+var url = "http://127.0.0.1:5000/libraries_map"
+
+d3.json(url).then(function(data) {
+  console.log(data);
+});
