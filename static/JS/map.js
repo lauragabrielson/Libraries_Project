@@ -36,6 +36,7 @@ var url = "http://127.0.0.1:5000/libraries_map"
 d3.json(url).then(function(data) {
   // console.log(data);
 
+  // Create and add heatLayer
   var heatArray = [];
 
   for (var i = 0; i < data.length; i++) {
@@ -43,12 +44,23 @@ d3.json(url).then(function(data) {
     heatArray.push([data[i].lat, data[i].lon]);
 
   };
-
-  // console.log(heatArray);
-
+  console.log(heatArray);
   var heat = L.heatLayer(heatArray, {
     radius: 70,
     blur: 10
   }).addTo(myMap);
+
+  // // Add markers for each location
+  // var pinArray = []
+
+  // for (var i = 0; i < data.length; i++) {
+
+  //   var location = [data[i].lat, data[i].lon]
+
+  //   if (location) {
+  //     L.marker([data[i].lat, data[i].lon]).addTo(myMap);
+  //   }
+  // };
+ 
 
 });
