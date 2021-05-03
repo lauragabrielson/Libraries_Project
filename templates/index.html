@@ -38,15 +38,15 @@
         <div id="slick-carousel">
           <h2 style="color: white;">Library Facts</h2>
           <div class="slick">
-            <div><img class="carousel" src="../carousel_images/02-guinness-book-jma.work_1.png"></div>
-            <div><img class="carousel" src="../carousel_images/91Ax4+FyBDL.png"></div>
-            <div><img class="carousel" src="../carousel_images/loc.png"></div>
-            <div><img class="carousel" src="../carousel_images/20170420_Beinecke_Rare_Book_Library_Interior_Yale_University_New_Haven_Connecticut.png"></div>
-            <div><img class="carousel" src="../carousel_images/fdlp_logo.png"></div>
-            <div><img class="carousel" src="../carousel_images/HaskellLibraryBorderLine.png"></div>
-            <div><img class="carousel" src="../carousel_images/Mafra-Palace-Library-1.png"></div>
-            <div><img class="carousel" src="../carousel_images/p063xqfh.png"></div>
-            <div><img class="carousel" src="../carousel_images/Screenshot 2021-05-01 201855.png"></div>
+            <div><img class="carousel" src="../carousel_images/02-guinness-book-jma.work_1.png" alt="Guinness Book of Records"></div>
+            <div><img class="carousel" src="../carousel_images/91Ax4+FyBDL.png" alt="Ronald Edwin McNair"></div>
+            <div><img class="carousel" src="../carousel_images/loc.png" alt="Library of Congress"></div>
+            <div><img class="carousel" src="../carousel_images/20170420_Beinecke_Rare_Book_Library_Interior_Yale_University_New_Haven_Connecticut.png" alt="Beinecke Rare Book Library"></div>
+            <div><img class="carousel" src="../carousel_images/fdlp_logo.png" alt="Federal Depositories"></div>
+            <div><img class="carousel" src="../carousel_images/HaskellLibraryBorderLine.png" alt="Haskell Library Border Line"></div>
+            <div><img class="carousel" src="../carousel_images/Mafra-Palace-Library-1.png" alt="Mafra Palace Library Bats"></div>
+            <div><img class="carousel" src="../carousel_images/p063xqfh.png" alt="Biblioburros"></div>
+            <div><img class="carousel" src="../carousel_images/Screenshot 2021-05-01 201855.png" alt="The Human Library"></div>
             </div>  
           </div>
         </div>
@@ -79,15 +79,20 @@
     <!-- D3 CDN -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- JS -->
-    <script type="text/javascript" src="../static/JS/main.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/main.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/main.js') }}"></script>
     <!-- Map JS -->
-    <script type="text/javascript" src="../static/JS/map.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/map.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/map.js') }}"></script>
     <!-- Leaflet heatmap plugin-->
-    <script type="text/javascript" src="../static/JS/leaflet-heat.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/leaflet-heat.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/leaflet-heat.js') }}"></script>
     <!-- Carousel JS -->
-    <script type="text/javascript" src="../static/JS/carousel.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/carousel.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/carousel.js') }}"></script>
     <!-- Donut JS -->
-    <script type="text/javascript" src="../static/JS/donut.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/donut.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/donut.js') }}"></script>
 				  
 </body>
 </html>
