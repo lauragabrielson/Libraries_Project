@@ -1,7 +1,7 @@
 body {
   padding: 0px;
   margin: 0px;
-  background-image: url(../images/susan-q-yin-2JIvboGLeho-unsplash.jpg);
+  background-image: url(../images/susan-q-yin-2JIvboGLeho-unsplash.png);
   background-color: #333333;
   background-blend-mode: screen;
 }
@@ -18,5 +18,11 @@ html {
 }
 
 .carousel {
-  padding-left: 20px;
+  /* padding-left: auto;
+  padding-right: auto; */
+  align-self: center;
+}
+
+h2 {
+  color: white;
 }
