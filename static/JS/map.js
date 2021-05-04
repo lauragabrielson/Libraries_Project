@@ -73,7 +73,7 @@ d3.json(url).then(function(data) {
     var location = [data[i].lat, data[i].lon]
 
     if (location) {
-      markers.addLayer(L.marker([data[i].lat, data[i].lon]).bindPopUp(data[i].library_name));
+      markers.addLayer(L.marker([data[i].lat, data[i].lon]).bindPopup(data[i].library_name));
     }
   };
   
