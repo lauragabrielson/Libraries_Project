@@ -1,8 +1,8 @@
 body {
   padding: 0px;
   margin: 0px;
-  background-image: url("/images/susan-q-yin-2JIvboGLeho-unsplash.jpg");
-  background-color: #222222;
+  background-image: url(../images/susan-q-yin-2JIvboGLeho-unsplash.jpg);
+  background-color: #333333;
   background-blend-mode: screen;
 }
 /* Photo by <a href="https://unsplash.com/@syinq?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Susan Q Yin</a> on <a href="https://unsplash.com/images/things/book?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */
