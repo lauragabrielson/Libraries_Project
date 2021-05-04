@@ -1,4 +1,4 @@
-console.log('donut.js loaded')
+console.log('donut.js loaded');
 
 var employeeSum = data => {
     sum = 0;
@@ -24,6 +24,30 @@ var MLSlibrarianSum = data => {
     return sum;
 };
 
+// function updateToolTip(data) {
+//   var xlabel;
+//   var ylabel;
+
+//   var toolTip = d3.tip()
+//     .attr('class', 'd3-tip')
+//     .offset([80, -60])
+//     .html(function(d) {
+//       return (`I'm a tooltip`);
+//     });
+
+//     slicesGroup.call(toolTip);
+
+//     slicesGroup.on('mouseover', function(data) {
+//     toolTip.show(data, this);
+//   })
+//     // onmouseout event
+//     .on('mouseout', function(data) {
+//       toolTip.hide(data);
+//     });
+
+//   return abbrGroup;
+// }
+
 // load data
 d3.json('/donut').then(data => {
 
@@ -38,33 +62,11 @@ d3.json('/donut').then(data => {
         'Employees': employees,
         'Librarians': librarians,
         'MLS Librarians': MLSlibrarians
-    }
-  
-    console.log(staffDistribution);
+    };
 
-//     // function to sort object alphebetically
-//    function sortOnKeys(obj) {
-//       var sorted = [];
-//       for(var key in obj) {
-//           sorted[sorted.length] = key;
-//       }
-//       sorted.sort();
-//       var sortedObj = {};
-//       for(var i = 0; i < sorted.length; i++) {
-//         sortedObj[sorted[i]] = obj[sorted[i]];
-//       }
-//       return sortedObj;
-//     };
-  
-//     function totalStaff( obj ) {
-//       var sum = 0;
-//       for( var el in obj ) {
-//         if( obj.hasOwnProperty( el ) ) {
-//           sum += parseFloat( obj[el] );
-//         }
-//       }
-//       return sum;
-//     }
+    keys = Object.keys(staffDistribution);
+
+    console.log(staffDistribution);
   
     // set the dimensions and margins of the graph
     var width = 475
@@ -81,6 +83,53 @@ d3.json('/donut').then(data => {
       .attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    // create a tooltip
+    var Tooltip = d3.select("#donut")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "2px")
+      .style("border-radius", "5px")
+      .style("padding", "5px")
+
+    // Three function that change the tooltip when user hover / move / leave a cell
+    var mouseover = function(d) {
+      Tooltip
+        .style("opacity", 1)
+      d3.select(this)
+        .transition()
+        .duration(175)
+        .style("opacity", 1)
+        .attr('d', d3.arc()
+          .innerRadius(115)
+          .outerRadius(radius + 5)
+          .cornerRadius(10)
+        )
+    }
+    var mousemove = function(d) {
+      Tooltip
+        .html(`TOOLTIP IS WORKING! GET THE DATA IN THERE NOW!`)
+        .style("left", (d3.mouse(this)[0]+400) + "px")
+        .style("top", (d3.mouse(this)[1]+580) + "px")
+    }
+    var mouseleave = function(d) {
+      Tooltip
+        .style("opacity", 0)
+      d3.select(this)
+        .style("stroke", "none")
+        .style("opacity", 0.9)
+        .transition()
+        .duration(175)
+        .style("opacity", .9)
+        .attr('d', d3.arc()
+          .innerRadius(120)
+          .outerRadius(radius)
+          .cornerRadius(10)
+        )
+    }
   
     // pieGroup.append('text')
     //   // .attr('dy', '.25em')
@@ -112,37 +161,36 @@ d3.json('/donut').then(data => {
         .innerRadius(120)
         .outerRadius(radius)
         .cornerRadius(10)
+      
       )
       .attr('fill', function(d, i){ return(colorScheme(d.data.key)) })
-      .attr("stroke", "white")
-      .style("stroke-width", "2px")
+      // .attr("stroke", "white")
+      // .style("stroke-width", "2px")
       .style('border-radius', '20px')
-      .style("opacity", 1);
-  
-    slicesGroup.on('mouseover', function() {
-      d3.select(this)
-        .transition()
-        .duration(175)
-        .style("opacity", .75)
-        .attr('d', d3.arc()
-          .innerRadius(115)
-          .outerRadius(radius + 5)
-          .cornerRadius(10)
-        )
-        .attr('fill', function(d, i){ return(colorScheme(d.data.key)) });
-      });
-  
-    slicesGroup.on('mouseout', function() {
-      d3.select(this)
-        .transition()
-        .duration(175)
-        .style("opacity", 1)
-        .attr('d', d3.arc()
-          .innerRadius(120)
-          .outerRadius(radius)
-          .cornerRadius(10)
-        )
-        .attr('fill', function(d, i){ return(colorScheme(d.data.key)) });
-    });
+      .style("opacity", .9)
+      .on('mouseover', mouseover)
+      .on('mousemove', mousemove)
+      .on('mouseleave', mouseleave);
+
+    pieGroup.selectAll("dots")
+      .data(keys)
+      .enter()
+      .append("circle")
+        .attr("cx", -50)
+        .attr("cy", function(d,i){ return -25 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("r", 7)
+        .style("fill", function(d){ return colorScheme(d)});
+
+    // Add one dot in the legend for each name.
+    pieGroup.selectAll("labels")
+      .data(keys)
+      .enter()
+      .append("text")
+        .attr("x", -35)
+        .attr("y", function(d,i){ return -25 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+        // .style("fill", function(d){ return color(d)})
+        .text(function(d){ return d})
+        .attr("text-anchor", "left")
+        .style("alignment-baseline", "middle");
   
   });
