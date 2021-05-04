@@ -14,11 +14,13 @@
    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
   <!-- Slick CSS -->
-  <link rel="stylesheet" type="text/css" href="../slick/slick.css">
-  <link rel="stylesheet" type="text/css" href="../slick/slick-theme.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../slick/slick.css"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick.css') }}">
+  <!-- <link rel="stylesheet" type="text/css" href="../slick/slick-theme.css"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick-theme.css') }}">
   <!-- Custom CSS  -->
-  <link rel="stylesheet" href="../static/css/style.css">
-  
+  <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
@@ -34,20 +36,28 @@
   <div class="container">
    <div class="row">
      
-      <div class="col-sm-12 col-md-5 mx-auto">
+      <div class="col-sm-8 col-md-5">
         <div id="slick-carousel">
           <h2 style="color: white;">Library Facts</h2>
           <div class="slick">
-            <div><img src="../carousel_images/02-guinness-book-jma.work_1.png"></div>
-            <div><img src="../carousel_images/91Ax4+FyBDL.png"></div>
-            <div><img src="../carousel_images/loc.png"></div>
-            <div><img src="../carousel_images/20170420_Beinecke_Rare_Book_Library_Interior_Yale_University_New_Haven_Connecticut.png"></div>
-            <div><img src="../carousel_images/fdlp_logo.png"></div>
-            <div><img src="../carousel_images/HaskellLibraryBorderLine.png"></div>
-            <div><img src="../carousel_images/Mafra-Palace-Library-1.png"></div>
-            <div><img src="../carousel_images/p063xqfh.png"></div>
-            <div><img src="../carousel_images/Screenshot 2021-05-01 201855.png"></div>
-            </div>  
+            <!-- <div><img class="carousel" src="../carousel_images/guinness_book.png" alt="Guinness Book of Records"></div>
+            <div><img class="carousel" src="../carousel_images/ronald_mcnair.png" alt="Ronald Edwin McNair"></div>
+            <div><img class="carousel" src="../carousel_images/library_of_congress.png" alt="Library of Congress"></div>
+            <div><img class="carousel" src="../carousel_images/beinecke_rare_book.png" alt="Beinecke Rare Book Library"></div>
+            <div><img class="carousel" src="../carousel_images/federal_depository.png" alt="Federal Depositories"></div>
+            <div><img class="carousel" src="../carousel_images/HaskellLibraryBorderLine.png" alt="Haskell Library Border Line"></div>
+            <div><img class="carousel" src="../carousel_images/mafra_palace.png" alt="Mafra Palace Library Bats"></div>
+            <div><img class="carousel" src="../carousel_images/biblioburro.png" alt="Biblioburros"></div>
+            <div><img class="carousel" src="../carousel_images/human_library.png" alt="The Human Library"></div> -->
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/guinness_book.png') }}" alt="Guinness Book of Records"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/ronald_mcnair.png') }}" alt="Ronald Edwin McNair"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/library_of_congress.png') }}" alt="Library of Congress"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/beinecke_rare_book.png') }}" alt="Beinecke Rare Book Library"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/federal_depository.png') }}" alt="Federal Depositories"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/haskell_library.png') }}" alt="Haskell Library Border Line"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/mafra_palace.png') }}" alt="Mafra Palace Library Bats"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/biblioburro.png') }}" alt="Biblioburros"></div>
+            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/human_library.png') }}" alt="The Human Library"></div>  
           </div>
         </div>
       </div>
@@ -61,7 +71,8 @@
     
     <!-- Add jquery/slick scripts -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="../slick/slick.min.js"></script>
+    <!-- <script type="text/javascript" src="../slick/slick.min.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='slick/slick.min.js') }}"></script>
 
     <!-- Add d3 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -79,15 +90,20 @@
     <!-- D3 CDN -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- JS -->
-    <script type="text/javascript" src="../static/JS/main.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/main.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/main.js') }}"></script>
     <!-- Map JS -->
-    <script type="text/javascript" src="../static/JS/map.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/map.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/map.js') }}"></script>
     <!-- Leaflet heatmap plugin-->
-    <script type="text/javascript" src="../static/JS/leaflet-heat.js"></script>
+    <!-- <script type="text/javascript" src="../static/JS/leaflet-heat.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/leaflet-heat.js') }}"></script>
     <!-- Carousel JS -->
-    <script type="text/javascript" src="../static/JS/carousel.js"></script>
-    <!-- Carousel JS -->
+    <!-- <script type="text/javascript" src="../static/JS/carousel.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/carousel.js') }}"></script>
+    <!-- Donut JS -->
     <script type="text/javascript" src="../static/JS/donut.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/donut.js') }}"></script>
 				  
 </body>
 </html>
