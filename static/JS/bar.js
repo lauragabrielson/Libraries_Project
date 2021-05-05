@@ -3,6 +3,7 @@ console.log("Loaded bar.js");
 
 // var url = "http://127.0.0.1:5000/libraries_bar"
 
+function DrawBargraph(state) {
 // Query the endpoint that returns a JSON ...
 d3.json("/libraries_bar").then(function (data) {
 
@@ -10,75 +11,79 @@ d3.json("/libraries_bar").then(function (data) {
     // ... and dump that JSON to the console for inspection
     console.log(data); 
 
-    var state = data.state
+
+    var state = "CA"
     
     console.log(state);
 
-    // Next, pull out the keys and the values for graphing
-    // for (var i = 0; i < data.length; i++) {
-    //     var collections = [data[i].audio_collection, data[i].print_collection]
-    // }
-    // collections = Object.keys(data)
+    var result = data.filter(d => d.state === state);
 
-    var audioSum = data => {
-        sum = 0;
-        for (var i = 0; i < data.length; i++) {
-            sum += data[i].audio_collection;
-        };
-        return sum;
-    };
+    console.log(result);
 
-    audio = audioSum(data)
     
-    var printSum = data => {
+    console.log(state);
+
+    var audioSum = result => {
         sum = 0;
-        for (var i = 0; i < data.length; i++) {
-            sum += data[i].print_collection;
+        for (var i = 0; i < result.length; i++) {
+            sum += result[i].audio_collection;
         };
         return sum;
     };
 
-    printCol = printSum(data)
+    audio = audioSum(result)
 
-    var digitalSum = data => {
+    console.log(audio)
+    
+    var printSum = result => {
         sum = 0;
-        for (var i = 0; i < data.length; i++) {
-            sum += data[i].digital_collection;
+        for (var i = 0; i < result.length; i++) {
+            sum += result[i].print_collection;
         };
         return sum;
     };
 
-    digital = digitalSum(data)
+    printCol = printSum(result)
 
-    var downloadVideoSum = data => {
+    var digitalSum = result => {
         sum = 0;
-        for (var i = 0; i < data.length; i++) {
-            sum += data[i].downloadable_video;
+        for (var i = 0; i < result.length; i++) {
+            sum += result[i].digital_collection;
         };
         return sum;
     };
 
-    downloadVideo = downloadVideoSum(data)
+    digital = digitalSum(result)
 
-    var downloadAudioSum = data => {
+    var downloadVideoSum = result => {
         sum = 0;
-        for (var i = 0; i < data.length; i++) {
-            sum += data[i].downloadable_audio;
+        for (var i = 0; i < result.length; i++) {
+            sum += result[i].downloadable_video;
         };
         return sum;
     };
 
-    downloadAudio = downloadAudioSum(data)
+    downloadVideo = downloadVideoSum(result)
 
-    var physicalVideoSum = data => {
+    var downloadAudioSum = result => {
         sum = 0;
-        for (var i = 0; i < data.length; i++) {
-            sum += data[i].physical_video;
+        for (var i = 0; i < result.length; i++) {
+            sum += result[i].downloadable_audio;
         };
         return sum;
     };
 
-    physicalVideo = physicalVideoSum(data)
+    downloadAudio = downloadAudioSum(result)
+
+    var physicalVideoSum = result => {
+        sum = 0;
+        for (var i = 0; i < result.length; i++) {
+            sum += result[i].physical_video;
+        };
+        return sum;
+    };
+
+    physicalVideo = physicalVideoSum(result)
 
     console.log(`Print:${printCol}, Audio:${audio}, Video: ${physicalVideo}`)
     console.log(`Digital:${digital}, Audio:${downloadAudio}, Video: ${downloadVideo}`)
@@ -88,6 +93,8 @@ d3.json("/libraries_bar").then(function (data) {
     digital_collections = [digital, downloadAudio, downloadVideo]
     var collection_names = ["Print", "Audio", "Video"]
     var digital_collection_names = ["Print", "Audio", "Video"]
+
+  
     ///*********Option 2*************** */
     // var collection_names = ["Print", "Video", "Audio"]
     // var digital_collection_names = ["Digital", "DAudio", "DVideo"]
@@ -140,17 +147,170 @@ d3.json("/libraries_bar").then(function (data) {
 
     // Define a layout object
     var layout = {
-        title: "Collections",
-        xaxis: { title: "Collection Total"},
+
+        title: (`State: ${state}`),
+
+        // xaxis: { title: "Collection Total"},
         barmode: "stack",
-        plot_bgcolor:"#FFF3",
+        // plot_bgcolor:"#FFF3",
         paper_bgcolor:"#FFF3"
-        // yaxis: { title: "Total"}
     };
 
     // Create the plot
     Plotly.newPlot("bar", data, layout); 
 });
+// }
+};
+
+
+// function DrawBargraph(state) {
+// // Query the endpoint that returns a JSON ...
+// d3.json("/libraries_bar").then(function (data) {
+
+
+//     // ... and dump that JSON to the console for inspection
+//     console.log(data); 
+
+
+//     var audioSum = data => {
+//         sum = 0;
+//         for (var i = 0; i < data.length; i++) {
+//             sum += data[i].audio_collection;
+//         };
+//         return sum;
+//     };
+
+//     audio = audioSum(data)
+
+//     console.log(audio)
+    
+//     var printSum = data => {
+//         sum = 0;
+//         for (var i = 0; i < data.length; i++) {
+//             sum += data[i].print_collection;
+//         };
+//         return sum;
+//     };
+
+//     printCol = printSum(data)
+
+//     var digitalSum = data => {
+//         sum = 0;
+//         for (var i = 0; i < data.length; i++) {
+//             sum += data[i].digital_collection;
+//         };
+//         return sum;
+//     };
+
+//     digital = digitalSum(data)
+
+//     var downloadVideoSum = data => {
+//         sum = 0;
+//         for (var i = 0; i < data.length; i++) {
+//             sum += data[i].downloadable_video;
+//         };
+//         return sum;
+//     };
+
+//     downloadVideo = downloadVideoSum(data)
+
+//     var downloadAudioSum = data => {
+//         sum = 0;
+//         for (var i = 0; i < data.length; i++) {
+//             sum += data[i].downloadable_audio;
+//         };
+//         return sum;
+//     };
+
+//     downloadAudio = downloadAudioSum(data)
+
+//     var physicalVideoSum = data => {
+//         sum = 0;
+//         for (var i = 0; i < data.length; i++) {
+//             sum += data[i].physical_video;
+//         };
+//         return sum;
+//     };
+
+//     physicalVideo = physicalVideoSum(data)
+
+//     console.log(`Print:${printCol}, Audio:${audio}, Video: ${physicalVideo}`)
+//     console.log(`Digital:${digital}, Audio:${downloadAudio}, Video: ${downloadVideo}`)
+  
+// //     // Create the trace
+//     collections = [printCol, audio, physicalVideo]
+//     digital_collections = [digital, downloadAudio, downloadVideo]
+//     var collection_names = ["Print", "Audio", "Video"]
+//     var digital_collection_names = ["Print", "Audio", "Video"]
+
+  
+//     ///*********Option 2*************** */
+//     // var collection_names = ["Print", "Video", "Audio"]
+//     // var digital_collection_names = ["Digital", "DAudio", "DVideo"]
+//     var trace1 = {
+//         x: collections,
+//         y: collection_names,
+//         type: "bar",
+//             marker: {
+//                 // color: 'rgb(189, 209, 250',
+//                 // opacity: 0.6,
+//                 // line: {
+//                 //   color: 'rgb(28, 50, 92)',
+//                 //   width: 1.5
+//                 // },
+//                 color: '#E0CA3C',
+//                 opacity: 0.6,
+//                 line: {
+//                   color: '#136F63',
+//                   width: 1.5
+//                 },
+//             },
+//             name: "Physical",
+//             orientation: "h"
+       
+//     };
+
+//     var trace2 = {
+//         x: digital_collections,
+//         y: digital_collection_names,
+//         type: "bar",
+//             marker: {
+//                 color: '#136F63',
+//                 opacity: 0.8,
+//                 // line: {
+//                 //   color: 'rgb(189, 209, 250',
+//                 //   width: 1.5
+//                 // },
+//                 line: {
+//                     color: '#136F63',
+//                     width: 1.5
+//                   },
+//             },
+//             name: "Digital",
+//             orientation: "h"
+       
+//     };
+
+//     // Put the trace into an array 
+//     var data = [trace1, trace2];
+
+//     // Define a layout object
+//     var layout = {
+//         title: "Collections",
+
+//         // xaxis: { title: "Collection Total"},
+//         barmode: "stack",
+//         plot_bgcolor:"#FFF3",
+//         paper_bgcolor:"#FFF3"
+
+
+//     };
+
+//     // Create the plot
+//     Plotly.newPlot("bar", data, layout); 
+// });
+// // }
+// };
 
 ///******************************Option 2********************* */
 
