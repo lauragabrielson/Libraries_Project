@@ -24,30 +24,6 @@ var MLSlibrarianSum = data => {
     return sum;
 };
 
-// function updateToolTip(data) {
-//   var xlabel;
-//   var ylabel;
-
-//   var toolTip = d3.tip()
-//     .attr('class', 'd3-tip')
-//     .offset([80, -60])
-//     .html(function(d) {
-//       return (`I'm a tooltip`);
-//     });
-
-//     slicesGroup.call(toolTip);
-
-//     slicesGroup.on('mouseover', function(data) {
-//     toolTip.show(data, this);
-//   })
-//     // onmouseout event
-//     .on('mouseout', function(data) {
-//       toolTip.hide(data);
-//     });
-
-//   return abbrGroup;
-// }
-
 // load data
 d3.json('/donut').then(data => {
 
@@ -73,7 +49,7 @@ d3.json('/donut').then(data => {
         height = 475
         margin = 35;
   
-    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    // The radius of the pieplot is half the width or half the height (smallest one).
     var radius = Math.min(width, height) / 2 - margin;
   
     // append the svg object to the div
@@ -111,9 +87,12 @@ d3.json('/donut').then(data => {
     }
     var mousemove = function(d) {
       Tooltip
-        .html(`TOOLTIP IS WORKING! GET THE DATA IN THERE NOW!`)
-        .style("left", (d3.mouse(this)[0]+400) + "px")
-        .style("top", (d3.mouse(this)[1]+580) + "px")
+        // .html(`CATEGORY </br> 10200 </br> 53.2%`)
+        .html(function(d) {
+          return (`${key}`)
+        })
+        .style("left", (d3.mouse(this)[0]+300) + "px")
+        .style("top", (d3.mouse(this)[1]+200) + "px")
     }
     var mouseleave = function(d) {
       Tooltip
