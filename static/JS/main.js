@@ -66,6 +66,16 @@ console.log("Loaded main.js");
 
 //     DrawMap();
 
+
+// function InitializeDashboard() {
+
+//     DrawMap();
+
+//     var initialState = "Minnesota";
+//     DrawDonut(initialState); 
+
+//     UpdateLibraryFacts(); 
+
 //     var initialState = "Minnesota";
 //     DrawDonut(initialState); 
 
@@ -74,11 +84,13 @@ console.log("Loaded main.js");
 
 // }
 
+
 // InitializeDashboard(); 
 
 
+// }
 
-
+// InitializeDashboard(); 
 
 
 DrawDonut();
