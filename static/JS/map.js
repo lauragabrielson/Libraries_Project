@@ -14,7 +14,7 @@ attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a h
 tileSize: 512,
 maxZoom: 18,
 zoomOffset: -1,
-id: "mapbox/streets-v11",
+id: "mapbox/light-v9",
 accessToken: API_KEY
 }).addTo(myMap);
 
@@ -50,35 +50,36 @@ var alt_link = "https://leafletjs.com/examples/choropleth/us-states.js"
 // Grab JSON data for state outlines.
 d3.json(link).then(function(data) {
   console.log("logging data:");
-  console.log(data);
+  // console.log(data);
   stateName = data.features;
-  console.log(stateName);
+  // console.log(stateName);
 
   L.geoJson(data, { 
     style: function(feature) {
       return {
         color: "white",
-        fillColor: "blue",
-        fillOpacity: 0.5,
+        fillColor: "yellow",
+        fillOpacity: 0.4,
         weight: 1.5
       };
     },
     // Call on each feature to make state clickable
     onEachFeature: function(feature, layer) {
+
       // Set mouse event to change state opacity
       layer.on({
         // On scrollover, increase opacity
         mouseover: function(event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.9
+            fillOpacity: 0.7
           });
         },
         // Return to lower opacity on mouseout
         mouseout: function(event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.5
+            fillOpacity: 0.4
           });
         },
         // Zoom into state on click
@@ -94,15 +95,42 @@ d3.json(link).then(function(data) {
     } 
   }).addTo(myMap);
   
-  // Test rectangle in northern Montana
-  L.polygon([[48.84, -110.34], [48.86, -112.36]]).bindTooltip("test", {
-    sticky: true
-  }).addTo(myMap);
+  // // Test rectangle in northern Montana
+  // L.polygon([[48.84, -110.34], [48.86, -112.36]]).bindTooltip("test", {
+  //   sticky: true
+  // }).addTo(myMap);
 
 });
 
+// A third d3.json to filter for state pop ups?
+function StatePopup(state) {
+  d3.json("/libraries_map").then(function(data) {
+    // console.log(data);
+    
+    // Make a list of unique state initials
+    var states = []
 
-// Grab JSON data of librarie branches.
+    for (var i = 0; i < data.length; i++) {
+      var state = data[i].state;
+      states.push(state);
+    };
+    // Thank you Vamsi on Stack Overflow https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+    states = states.filter((x, i, a) => a.indexOf(x) == i) 
+    console.log(states)
+
+    // var info = data.filter(d => d.state === state);
+    // console.log(info);
+
+  })
+
+}
+StatePopup();
+
+
+
+
+
+// Grab JSON data of library branches.
 
 var url = "/libraries_map"
 
@@ -119,7 +147,11 @@ d3.json(url).then(function(data) {
     var location = [data[i].lat, data[i].lon]
 
     if (location) {
-      markers.addLayer(L.marker([data[i].lat, data[i].lon]).bindPopup(data[i].library_name));
+      markers.addLayer(L.marker([data[i].lat, data[i].lon])
+      .bindPopup("Library System/Branch Name: " + data[i].library_name + 
+        "</br> State: " + data[i].state +  
+        "</br> Service Population: " + data[i].services_population +
+        "</br> Number of Bookmobiles: " + data[i].bookmobiles));
     }
   };
   
@@ -128,35 +160,36 @@ d3.json(url).then(function(data) {
 
 })
 
+// var url = "/libraries_map"
 
-// Optional heat array below
+// // Optional heat array below
 // d3.json(url).then(function(data) {
-  // console.log(data);
+//   console.log(data);
 
-  // // Create and add heatLayer
-  // var heatArray = [];
+//   // Create and add heatLayer
+//   var heatArray = [];
 
-  // for (var i = 0; i < data.length; i++) {
+//   for (var i = 0; i < data.length; i++) {
 
-  //   heatArray.push([data[i].lat, data[i].lon]);
+//     heatArray.push([data[i].lat, data[i].lon]);
 
-  // };
-  // console.log(heatArray);
-  // var heat = L.heatLayer(heatArray, {
-  //   radius: 70,
-  //   blur: 10
-  // }).addTo(myMap);
+//   };
+//   console.log(heatArray);
+//   var heat = L.heatLayer(heatArray, {
+//     radius: 50,
+//     blur: 10
+//   }).addTo(myMap);
 
-  // // Add markers for each location
-  // var pinArray = []
+//   // // Add markers for each location
+//   // var pinArray = []
 
-  // for (var i = 0; i < data.length; i++) {
+//   // for (var i = 0; i < data.length; i++) {
 
-  //   var location = [data[i].lat, data[i].lon]
+//   //   var location = [data[i].lat, data[i].lon]
 
-  //   if (location) {
-  //     L.marker([data[i].lat, data[i].lon]).addTo(myMap);
-  //   }
-  // };
+//   //   if (location) {
+//   //     L.marker([data[i].lat, data[i].lon]).addTo(myMap);
+//   //   }
+//   // };
 
 // });
