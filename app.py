@@ -38,7 +38,7 @@ def IndexRoute():
 
 @app.route("/donut")
 def donut():
-    ''' Query the database for fighter aircraft and return the results as a JSON. '''
+    ''' Query the database and return the results as a JSON. '''
 
     # Open a session, run the query, and then close the session again
     session = Session(engine)
@@ -62,7 +62,7 @@ def donut():
 
 @app.route("/libraries_map")
 def libraries_map():
-    ''' Query the database for fighter aircraft and return the results as a JSON. '''
+    ''' Query the database and return the results as a JSON. '''
 
     # Open a session, run the query, and then close the session again
     session = Session(engine)
@@ -88,7 +88,7 @@ def libraries_map():
 
 @app.route("/libraries_bar")
 def libraries_bar():
-    ''' Query the database for fighter aircraft and return the results as a JSON. '''
+    ''' Query the database and return the results as a JSON. '''
 
     # Open a session, run the query, and then close the session again
     session = Session(engine)

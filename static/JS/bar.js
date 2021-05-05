@@ -1,8 +1,9 @@
 //I've loaded the JavaScript file
-console.log("Loaded main.js");
+console.log("Loaded bar.js");
 
 // var url = "http://127.0.0.1:5000/libraries_bar"
 
+function DrawBargraph(state) {
 // Query the endpoint that returns a JSON ...
 d3.json("/libraries_bar").then(function (data) {
 
@@ -92,10 +93,16 @@ d3.json("/libraries_bar").then(function (data) {
         y: collection_names,
         type: "bar",
             marker: {
-                color: 'rgb(189, 209, 250',
+                // color: 'rgb(189, 209, 250',
+                // opacity: 0.6,
+                // line: {
+                //   color: 'rgb(28, 50, 92)',
+                //   width: 1.5
+                // },
+                color: '#E0CA3C',
                 opacity: 0.6,
                 line: {
-                  color: 'rgb(28, 50, 92)',
+                  color: '#136F63',
                   width: 1.5
                 },
             },
@@ -109,14 +116,14 @@ d3.json("/libraries_bar").then(function (data) {
         y: digital_collection_names,
         type: "bar",
             marker: {
-                color: 'rgb(28, 50, 92)',
+                color: '#136F63',
                 opacity: 0.8,
                 // line: {
                 //   color: 'rgb(189, 209, 250',
                 //   width: 1.5
                 // },
                 line: {
-                    color: 'rgb(28, 50, 92)',
+                    color: '#136F63',
                     width: 1.5
                   },
             },
@@ -131,14 +138,18 @@ d3.json("/libraries_bar").then(function (data) {
     // Define a layout object
     var layout = {
         title: "Collections",
-        xaxis: { title: "Collection Total"},
-        barmode: "stack"
+        // xaxis: { title: "Collection Total"},
+        barmode: "stack",
+        plot_bgcolor:"#FFF3",
+        paper_bgcolor:"#FFF3"
+
         // yaxis: { title: "Total"}
     };
 
     // Create the plot
     Plotly.newPlot("bar", data, layout); 
 });
+};
 
 ///******************************Option 2********************* */
 
