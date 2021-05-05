@@ -73,6 +73,7 @@
 // InitializeDashboard(); 
 
 
+DrawDonut();
 
 
 //I've loaded the JavaScript file
