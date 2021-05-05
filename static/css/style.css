@@ -13,14 +13,9 @@ html {
   height: 100%;
 }
 
-#slick-carousel {
-  align-items: center;
-}
 
-.carousel {
-  /* padding-left: auto;
-  padding-right: auto; */
-  align-self: center;
+.slick {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 h2 {
