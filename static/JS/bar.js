@@ -11,6 +11,7 @@ d3.json("/libraries_bar").then(function (data) {
     // ... and dump that JSON to the console for inspection
     console.log(data); 
 
+
     var state = "CA"
     
     console.log(state);
@@ -18,6 +19,9 @@ d3.json("/libraries_bar").then(function (data) {
     var result = data.filter(d => d.state === state);
 
     console.log(result);
+
+    
+    console.log(state);
 
     var audioSum = result => {
         sum = 0;
@@ -143,14 +147,13 @@ d3.json("/libraries_bar").then(function (data) {
 
     // Define a layout object
     var layout = {
+
         title: (`State: ${state}`),
 
         // xaxis: { title: "Collection Total"},
         barmode: "stack",
         // plot_bgcolor:"#FFF3",
         paper_bgcolor:"#FFF3"
-
-
     };
 
     // Create the plot
