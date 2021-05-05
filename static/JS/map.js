@@ -47,12 +47,14 @@ var alt_link = "https://leafletjs.com/examples/choropleth/us-states.js"
 // });
 
 
-// Grab JSON data..
+// Grab JSON data for state outlines.
 d3.json(link).then(function(data) {
   console.log("logging data:");
   console.log(data);
+  stateName = data.features;
+  console.log(stateName);
 
-  var statesOutlines = L.geoJson(data, { 
+  L.geoJson(data, { 
     style: function(feature) {
       return {
         color: "white",
@@ -85,12 +87,17 @@ d3.json(link).then(function(data) {
         }
       });
       // Add state pop up if possible
+      // console.log(data);
+      // stateName = data.features.properties.name
+      // Giving each feature a pop-up with information pertinent to it
+      layer.bindPopup("<h1>This is a Test</h1>");
     } 
   }).addTo(myMap);
   
-  // console.log(statesOutlines)
-
-  // statesOutlines.addTo(myMap);
+  // Test rectangle in northern Montana
+  L.polygon([[48.84, -110.34], [48.86, -112.36]]).bindTooltip("test", {
+    sticky: true
+  }).addTo(myMap);
 
 });
 
