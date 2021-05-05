@@ -110,7 +110,7 @@ d3.json("/libraries_bar").then(function (data) {
                 //   width: 1.5
                 // },
                 color: '#E0CA3C',
-                opacity: 0.6,
+                // opacity: 0.6,
                 line: {
                   color: '#136F63',
                   width: 1.5
@@ -127,7 +127,7 @@ d3.json("/libraries_bar").then(function (data) {
         type: "bar",
             marker: {
                 color: '#136F63',
-                opacity: 0.8,
+                // opacity: 0.8,
                 // line: {
                 //   color: 'rgb(189, 209, 250',
                 //   width: 1.5
@@ -147,13 +147,31 @@ d3.json("/libraries_bar").then(function (data) {
 
     // Define a layout object
     var layout = {
+        xaxis: {
+            // autotick: false,
+            ticks: 'inside',
+            // tick0: 0,
+            // dtick: 0.25,
+            ticklen: 8,
+            tickwidth: 4,
+            tickcolor: '#000'
+          },
+          yaxis: {
+            // autotick: false,
+            // ticks: 'outside',
+            // tick0: 0,
+            // dtick: 0.25,
+            ticklen: 8,
+            tickwidth: 4,
+            tickcolor: '#000'
+          },
 
         title: (`State: ${state}`),
 
         // xaxis: { title: "Collection Total"},
         barmode: "stack",
         // plot_bgcolor:"#FFF3",
-        paper_bgcolor:"#FFF3"
+        // paper_bgcolor:"#FFF3"
     };
 
     // Create the plot
