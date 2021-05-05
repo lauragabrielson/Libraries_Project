@@ -28,7 +28,7 @@ function DrawDonut(state) {
   // load data
   d3.json('/donut').then(data => {
 
-      console.log(data);
+      // console.log(data);
 
       var employees = Math.round(employeeSum(data) * 100) / 100;
       var librarians = Math.round(librarianSum(data) * 100) / 100;
@@ -87,12 +87,16 @@ function DrawDonut(state) {
           )
       }
       var mousemove = function(d) {
+
+        console.log(d);
+
         Tooltip
-          .html(`CATEGORY </br> 10200 </br> 53.2%`)
-          .html(function(d) {
-            return (`${d.employees}`)
-          })
-          .style("left", (d3.mouse(this)[0]+300) + "px")
+          .html(
+            `<center><b>${d.data.key}</b> </br>
+            ${d.data.value} FTE </br>
+            ${Math.round((d.data.value / totalStaff) * 100)}%</center>`
+            )
+          .style("left", (d3.mouse(this)[0]+275) + "px")
           .style("top", (d3.mouse(this)[1]+200) + "px")
       }
       var mouseleave = function(d) {
@@ -141,9 +145,12 @@ function DrawDonut(state) {
           .innerRadius(120)
           .outerRadius(radius)
           .cornerRadius(10)
-        
         )
-        .attr('fill', function(d, i){ return(colorScheme(d.data.key)) })
+        .attr('fill', function(d, i) 
+          { return( colorScheme(d.data.key) )
+          })
+        // .attr('id', function (d) { return d.data.key;})
+        // .attr('data', function (d) { console.log(d.data.value); return d.data.value;})
         // .attr("stroke", "white")
         // .style("stroke-width", "2px")
         .style('border-radius', '20px')
@@ -158,7 +165,7 @@ function DrawDonut(state) {
         .append("circle")
           .attr("cx", -50)
           .attr("cy", function(d,i){ return -25 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
-          .attr("r", 7)
+          .attr("r", 10)
           .style("fill", function(d){ return colorScheme(d)});
 
       // Add one dot in the legend for each name.
