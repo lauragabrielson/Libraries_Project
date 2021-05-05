@@ -1,6 +1,8 @@
 
+
 //I've loaded the JavaScript file
 console.log("Loaded main.js");
+
 
 
 
@@ -44,7 +46,7 @@ console.log("Loaded main.js");
 
 
 
-function HandleMapClick(event) {
+// function HandleMapClick(event) {
 
     // This is the event handler for clicks on the map
     // And oh, by the way, there's a great tutorial for this on the Leaflet site (hint, hint)
@@ -57,7 +59,12 @@ function HandleMapClick(event) {
     // DrawBargraph(newState); 
 
 
-}
+// }
+
+
+// function InitializeDashboard() {
+
+//     DrawMap();
 
 
 // function InitializeDashboard() {
@@ -69,12 +76,23 @@ function HandleMapClick(event) {
 
 //     UpdateLibraryFacts(); 
 
+//     var initialState = "Minnesota";
+//     DrawDonut(initialState); 
+
+
+
+//     UpdateLibraryFacts(); 
+
 
 // }
+
 
 // InitializeDashboard(); 
 
 
+// }
+
+// InitializeDashboard(); 
 
 
 DrawDonut();
