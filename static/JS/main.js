@@ -60,24 +60,25 @@ function HandleMapClick(event) {
 }
 
 
-function InitializeDashboard() {
+// function InitializeDashboard() {
 
-    DrawMap();
+//     DrawMap();
 
-    var initialState = "Minnesota";
-    DrawDonut(initialState); 
+//     var initialState = "Minnesota";
+//     DrawDonut(initialState); 
 
-    UpdateLibraryFacts(); 
+//     UpdateLibraryFacts(); 
 
 
-}
+// }
 
-InitializeDashboard(); 
+// InitializeDashboard(); 
 
 
 
 
 DrawDonut();
+DrawBargraph();
 
 
 

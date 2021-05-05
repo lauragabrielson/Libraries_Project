@@ -26,3 +26,10 @@ html {
 h2 {
   color: white;
 }
+
+.header {
+  color: white;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+  font-family: Garamond;
+}
