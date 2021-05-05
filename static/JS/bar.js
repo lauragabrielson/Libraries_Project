@@ -1,5 +1,5 @@
 //I've loaded the JavaScript file
-console.log("Loaded main.js");
+console.log("Loaded bar.js");
 
 // var url = "http://127.0.0.1:5000/libraries_bar"
 
@@ -9,6 +9,10 @@ d3.json("/libraries_bar").then(function (data) {
 
     // ... and dump that JSON to the console for inspection
     console.log(data); 
+
+    var state = data.state
+    
+    console.log(state);
 
     // Next, pull out the keys and the values for graphing
     // for (var i = 0; i < data.length; i++) {
@@ -92,10 +96,16 @@ d3.json("/libraries_bar").then(function (data) {
         y: collection_names,
         type: "bar",
             marker: {
-                color: 'rgb(189, 209, 250',
+                // color: 'rgb(189, 209, 250',
+                // opacity: 0.6,
+                // line: {
+                //   color: 'rgb(28, 50, 92)',
+                //   width: 1.5
+                // },
+                color: '#E0CA3C',
                 opacity: 0.6,
                 line: {
-                  color: 'rgb(28, 50, 92)',
+                  color: '#136F63',
                   width: 1.5
                 },
             },
@@ -109,14 +119,14 @@ d3.json("/libraries_bar").then(function (data) {
         y: digital_collection_names,
         type: "bar",
             marker: {
-                color: 'rgb(28, 50, 92)',
+                color: '#136F63',
                 opacity: 0.8,
                 // line: {
                 //   color: 'rgb(189, 209, 250',
                 //   width: 1.5
                 // },
                 line: {
-                    color: 'rgb(28, 50, 92)',
+                    color: '#136F63',
                     width: 1.5
                   },
             },
@@ -132,7 +142,9 @@ d3.json("/libraries_bar").then(function (data) {
     var layout = {
         title: "Collections",
         xaxis: { title: "Collection Total"},
-        barmode: "stack"
+        barmode: "stack",
+        plot_bgcolor:"#FFF3",
+        paper_bgcolor:"#FFF3"
         // yaxis: { title: "Total"}
     };
 
