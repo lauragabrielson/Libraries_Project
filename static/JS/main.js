@@ -1,5 +1,8 @@
 
-// console.log("dom.js loaded"); 
+
+//I've loaded the JavaScript file
+console.log("Loaded main.js");
+
 
 
 
@@ -43,41 +46,42 @@
 
 
 
-function HandleMapClick(event) {
+// function HandleMapClick(event) {
 
-    // This is the event handler for clicks on the map
-    // And oh, by the way, there's a great tutorial for this on the Leaflet site (hint, hint)
+//     // This is the event handler for clicks on the map
+//     // And oh, by the way, there's a great tutorial for this on the Leaflet site (hint, hint)
 
-    // And also, you can organize your marker clusters to be based on state; e.g., all the stuff
-    // in a given cluster resides within the same state. You can learn more about this on the Leaflet site too! 
+//     // And also, you can organize your marker clusters to be based on state; e.g., all the stuff
+//     // in a given cluster resides within the same state. You can learn more about this on the Leaflet site too! 
 
-    // Figure out which state was clicked (see above)
-    // DrawDonut(newState);
-    // DrawBargraph(newState); 
-
-
-}
+//     // Figure out which state was clicked (see above)
+//     // DrawDonut(newState);
+//     // DrawBargraph(newState); 
 
 
-function InitializeDashboard() {
-
-    DrawMap();
-
-    var initialState = "Minnesota";
-    DrawDonut(initialState); 
-
-    UpdateLibraryFacts(); 
+// }
 
 
-}
+// function InitializeDashboard() {
 
-InitializeDashboard(); 
+//     DrawMap();
+
+//     var initialState = "Minnesota";
+//     DrawDonut(initialState); 
+
+//     UpdateLibraryFacts(); 
+
+
+// }
+
+
+// InitializeDashboard(); 
+
+
 
 
 DrawDonut();
 DrawBargraph();
 
 
-//I've loaded the JavaScript file
-console.log("Loaded main.js");
 
