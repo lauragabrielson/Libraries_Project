@@ -12,7 +12,7 @@ d3.json("/libraries_bar").then(function (data) {
     console.log(data); 
 
 
-    var state = "CA"
+    var state = "NY"
     
     console.log(state);
 
