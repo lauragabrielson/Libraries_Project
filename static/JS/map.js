@@ -21,38 +21,17 @@ accessToken: API_KEY
 // Use this link to get the json data.
 // Many thanks to Eric Celeste for the geojson of state boundaries https://eric.clst.org/tech/usgeojson/
 var link = "static/data/us_states.json";
-var alt_link = "https://leafletjs.com/examples/choropleth/us-states.js"
 
-// // This works, commenting out as is to try to make states clickable below
-// // Grab JSON data..
-// d3.json(link).then(function(data) {
-//   console.log("logging data:");
-//   console.log(data);
-
-//   // Read and make geojson data usable
-//   // console.log(data);
-//   var mapStyle = {
-//     color: "white",
-//     fillColor: "blue",
-//     fillOpacity: 0.5,
-//     weight: 1.5
-//   }; 
-
-//   var statesOutlines = L.geoJson(data, { style: mapStyle });
-  
-//   console.log(statesOutlines)
-
-//   statesOutlines.addTo(myMap);
-
-// });
-
+// Use this link to get the json data.
+// Many thanks to Eric Celeste for the geojson of state boundaries https://eric.clst.org/tech/usgeojson/
+var link = "static/data/us_states.json";
 
 // Grab JSON data for state outlines.
 d3.json(link).then(function(data) {
   console.log("logging data:");
   // console.log(data);
-  stateName = data.features;
-  // console.log(stateName);
+  states = data.features;
+  console.log(states);
 
   L.geoJson(data, { 
     style: function(feature) {
@@ -83,10 +62,13 @@ d3.json(link).then(function(data) {
           });
         },
         // Zoom into state on click
+        // This also feels like the plac where we need to collect the state name
+        // The problem I'm having is that trying to access the data in the json returns undefined
         click: function(event) {
           myMap.fitBounds(event.target.getBounds());
         }
       });
+
       // Add state pop up if possible
       // console.log(data);
       // stateName = data.features.properties.name
@@ -118,16 +100,15 @@ function StatePopup(state) {
     states = states.filter((x, i, a) => a.indexOf(x) == i) 
     console.log(states)
 
-    // var info = data.filter(d => d.state === state);
-    // console.log(info);
+    // Console.log only shows final state (WY)
+    // To call this in the geojson map construction, there needs to be something else going on
+    var info = data.filter(d => d.state === state);
+    console.log(info);
 
   })
 
 }
 StatePopup();
-
-
-
 
 
 // Grab JSON data of library branches.
