@@ -13,17 +13,35 @@ html {
   height: 100%;
 }
 
-#slick-carousel {
-  align-items: center;
+.carousel {
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
-.carousel {
-  /* padding-left: auto;
-  padding-right: auto; */
-  align-self: center;
+.carousel-image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.carousel-text {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+}
+
+.slick {
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 h2 {
+  color: white;
+}
+
+h6 {
   color: white;
 }
 
@@ -32,4 +50,8 @@ h2 {
   padding-left: 3rem !important;
   padding-right: 3rem !important;
   font-family: Garamond;
+}
+
+#donut {
+  background-color: rgba(255, 255, 255, 0.7);
 }
