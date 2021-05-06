@@ -42,12 +42,12 @@ def donut():
 
     # Open a session, run the query, and then close the session again
     session = Session(engine)
-    results = session.query(table.mls_librarians, table.librarians, table.employees, table.total_staff, table.library_name, table.state).all()
+    results = session.query(table.mls_librarians, table.librarians, table.employees, table.total_staff, table.library_name, table.state, table.state_name).all()
     session.close()
 
     # Create a list of dictionaries, with each dictionary containing one row from the query. 
     all_employees = []
-    for mls_librarians, librarians, employees, total_staff, library_name, state in results:
+    for mls_librarians, librarians, employees, total_staff, library_name, state, state_name in results:
         dict = {}
         dict["mls_librarians"] = mls_librarians
         dict["librarians"] = librarians
@@ -55,6 +55,7 @@ def donut():
         dict["total_staff"] = total_staff
         dict["library_name"] = library_name
         dict["state"] = state
+        dict["state_name"] = state_name
         all_employees.append(dict)
 
     # Return the jsonified result. 
@@ -66,12 +67,12 @@ def libraries_map():
 
     # Open a session, run the query, and then close the session again
     session = Session(engine)
-    results = session.query(table.lat, table.lon, table.services_population, table.bookmobiles, table.library_name, table.state).all()
+    results = session.query(table.lat, table.lon, table.services_population, table.bookmobiles, table.library_name, table.state, table.state_name).all()
     session.close()
 
     # Create a list of dictionaries, with each dictionary containing one row from the query. 
     all_libraries = []
-    for lat, lon, services_population, bookmobiles, library_name, state in results:
+    for lat, lon, services_population, bookmobiles, library_name, state, state_name in results:
         dict = {}
         dict["lat"] = lat
         dict["lon"] = lon
@@ -79,6 +80,7 @@ def libraries_map():
         dict["bookmobiles"] = bookmobiles
         dict["library_name"] = library_name
         dict["state"] = state
+        dict["state_name"] = state_name
         all_libraries.append(dict)
 
     # Return the jsonified result. 
@@ -92,12 +94,12 @@ def libraries_bar():
 
     # Open a session, run the query, and then close the session again
     session = Session(engine)
-    results = session.query(table.print_collection, table.digital_collection, table.audio_collection, table.downloadable_audio, table.physical_video, table.downloadable_video, table.library_name, table.state).all()
+    results = session.query(table.print_collection, table.digital_collection, table.audio_collection, table.downloadable_audio, table.physical_video, table.downloadable_video, table.library_name, table.state, table.state_name).all()
     session.close()
 
     # Create a list of dictionaries, with each dictionary containing one row from the query. 
     all_collections = []
-    for print_collection, digital_collection, audio_collection, downloadable_audio, physical_video, downloadable_video, library_name, state in results:
+    for print_collection, digital_collection, audio_collection, downloadable_audio, physical_video, downloadable_video, library_name, state, state_name in results:
         dict = {}
         dict["print_collection"] = print_collection
         dict["digital_collection"] = digital_collection
@@ -107,6 +109,7 @@ def libraries_bar():
         dict["downloadable_video"] = downloadable_video
         dict["library_name"] = library_name
         dict["state"] = state
+        dict["state_name"] = state_name
         all_collections.append(dict)
 
     # Return the jsonified result. 
