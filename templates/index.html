@@ -59,13 +59,26 @@
             <div><img class="carousel" src="../carousel_images/mafra_palace.png" alt="Mafra Palace Library Bats"></div>
             <div><img class="carousel" src="../carousel_images/biblioburro.png" alt="Biblioburros"></div>
             <div><img class="carousel" src="../carousel_images/human_library.png" alt="The Human Library"></div> -->
-            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/guinness_book.png') }}" alt="Guinness Book of Records"></div>
+            <div class="carousel">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/guinness_book.png') }}" alt="Guinness Book of Records">
+              <p class="carousel-text">Most Stolen Library Books:<br>
+                1. The Guinness Book of Records tops the list. <br>
+                2. The Bible. <br>
+                3. Exam Prep Books. You name the exam, the prep book gets stolen. People steal these because they require 
+                extensive practice at home, and many times it takes longer than the library check out period allows. The most 
+                interesting: law enforcement officers training manuals are among the most commonly stolen exam prep books. <br>
+                source: https://bit.ly/2PS4Vab
+              </p>
+            </div>
             <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/ronald_mcnair.png') }}" alt="Ronald Edwin McNair"></div>
             <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/library_of_congress.png') }}" alt="Library of Congress"></div>
             <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/beinecke_rare_book.png') }}" alt="Beinecke Rare Book Library"></div>
             <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/federal_depository.png') }}" alt="Federal Depositories"></div>
             <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/haskell_library.png') }}" alt="Haskell Library Border Line"></div>
-            <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/mafra_palace.png') }}" alt="Mafra Palace Library Bats"></div>
+            <div class="carousel">
+              <!-- <img src="{{ url_for('static', filename='carousel_images/Mafra-Palace-Library-1.jpg') }}" alt="Mafra Palace Library Bats"> -->
+              <p class="carousel-text">Some text goes here.</p>
+            </div>
             <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/biblioburro.png') }}" alt="Biblioburros"></div>
             <div><img class="carousel" src="{{ url_for('static', filename='carousel_images/human_library.png') }}" alt="The Human Library"></div>  
           </div>
