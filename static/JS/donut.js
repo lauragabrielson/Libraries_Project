@@ -238,7 +238,7 @@ function UpdateDonut(state) {
   
     // append the svg object to the div
     var pieGroup = d3.select("#donut")
-      .attr("svg")
+      .append("svg")
       .attr("width", width)
       .attr("height", height)
       .append("g")
