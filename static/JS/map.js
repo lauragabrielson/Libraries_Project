@@ -136,8 +136,9 @@ function libraryClusterMarkers(state) {
 // console.log("testing clustermarker function")
 // libraryClusterMarkers();
 
-// Trying a info corner for state summary
- var info = L.control();
+// Create an info corner for state summary
+var info = L.control();
+
 function stateSummary(state) {
   d3.json("/libraries_map").then(function (data) {
     console.log(data);
@@ -186,59 +187,8 @@ function stateSummary(state) {
     };
 
     info.addTo(myMap);
-    })
+    });
    
 
   }
 
-// stateSummary();
-
-// function updateSummary(state) {
-//   // Set up info box
-//   var info = L.control();
-
-//   d3.json("/libraries_map").then(function (data) {
-//     info.onAdd = function (map) {
-//       this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-//       this.update();
-//       return this._div;
-//   };
-
-//   // method that we will use to update the control based on feature properties passed
-//   info.update = function (props) {
-//       this._div.innerHTML = '<h4>State Summary</h4>' + 'Hover over a state';
-//   };
-
-//   info.addTo(myMap);
-//   })
-
-
-// }
-
-
-
-// // A third d3.json to filter for state pop ups?
-// function StatePopup(state) {
-//   d3.json("/libraries_map").then(function(data) {
-//     // console.log(data);
-    
-//     // Make a list of unique state initials
-//     var states = []
-
-//     for (var i = 0; i < data.length; i++) {
-//       var state = data[i].state;
-//       states.push(state);
-//     };
-//     // Thank you Vamsi on Stack Overflow https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
-//     states = states.filter((x, i, a) => a.indexOf(x) == i) 
-//     console.log(states)
-
-//     // Console.log only shows final state (WY)
-//     // To call this in the geojson map construction, there needs to be something else going on
-//     var info = data.filter(d => d.state === state);
-//     console.log(info);
-
-//   })
-
-// }
-// StatePopup();
