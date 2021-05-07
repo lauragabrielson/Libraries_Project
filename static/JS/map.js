@@ -80,17 +80,9 @@ d3.json(link).then(function(data) {
           // DrawBargraph(newState);
           // UpdateDonut(newState);
 
-          // Create cluster markers for locations within newState selected
-          var url = "/libraries_map"
-
-          d3.json(url).then(function(data) {
-            console.log(data);
-
-            // Filter data by newState selected
-            var stateTest = "Iowa";
-            var stateData = data.filter (d => d.state_name = stateTest);
-            console.log(stateData);
-          })
+          // Call function to create markerclusters
+          libraryMarkers(newState);
+        
         }
       })
     }
@@ -100,48 +92,60 @@ d3.json(link).then(function(data) {
 
 })
 
+// Trying a libraries filter function again
 
-// Testing filtering on libraries data
-function librariesFilter(state) {
+function libraryMarkers(state) {
+  
+  // Call json for data
   d3.json("/libraries_map").then(function(data) {
-    console.log("Test function");
     console.log(data);
 
-    // Filter by state
+    // Filter the data by state
     var testState = "Iowa";
-    console.log(testState);
-    var result = data.filter(d => d.state_name === testState);
-    console.log(result);
-  });
-};
-librariesFilter();
+    var filteredData = data.filter(d => d.state_name === testState);
+    console.log(filteredData);
 
-
-// A third d3.json to filter for state pop ups?
-function StatePopup(state) {
-  d3.json("/libraries_map").then(function(data) {
-    // console.log(data);
-    
-    // Make a list of unique state initials
-    var states = []
-
-    for (var i = 0; i < data.length; i++) {
-      var state = data[i].state;
-      states.push(state);
+    // Loop through filtereData and create a marker for each location
+    for (var i = 0; i < filteredData.length; i++) {
+      var library = filteredData[i];
+      L.marker([library.lat, library.lon])
+        .bindPopup("This is a test")
+        .addTo(myMap);
     };
-    // Thank you Vamsi on Stack Overflow https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
-    states = states.filter((x, i, a) => a.indexOf(x) == i) 
-    console.log(states)
+  });
 
-    // Console.log only shows final state (WY)
-    // To call this in the geojson map construction, there needs to be something else going on
-    var info = data.filter(d => d.state === state);
-    console.log(info);
+};
+// console.log("testing marker function")
+// libraryMarkers();
 
-  })
 
-}
-StatePopup();
+
+
+// // A third d3.json to filter for state pop ups?
+// function StatePopup(state) {
+//   d3.json("/libraries_map").then(function(data) {
+//     // console.log(data);
+    
+//     // Make a list of unique state initials
+//     var states = []
+
+//     for (var i = 0; i < data.length; i++) {
+//       var state = data[i].state;
+//       states.push(state);
+//     };
+//     // Thank you Vamsi on Stack Overflow https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+//     states = states.filter((x, i, a) => a.indexOf(x) == i) 
+//     console.log(states)
+
+//     // Console.log only shows final state (WY)
+//     // To call this in the geojson map construction, there needs to be something else going on
+//     var info = data.filter(d => d.state === state);
+//     console.log(info);
+
+//   })
+
+// }
+// StatePopup();
 
 
 // // Grab JSON data of library branches.
