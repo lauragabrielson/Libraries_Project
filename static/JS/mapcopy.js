@@ -229,3 +229,40 @@ StatePopup();
 //   // };
 
 // });
+
+
+
+
+
+// Testing filtering on libraries data
+function librariesFilter(state) {
+  d3.json("/libraries_map").then(function(data) {
+    console.log("Test function");
+    console.log(data);
+
+    // Filter by state
+    var testState = "Iowa";
+    console.log(testState);
+    var result = data.filter(d => d.state_name === testState);
+    console.log(result);
+
+    // Initialize array to hold markers by state
+    var markers = [];
+
+    // Loop through filtered results
+    for (var i = 0; i < result.length; i++) {
+      var branch = result[i];
+
+      // For each branch, create a marker and bind a popup
+      var branchMarker = L.marker([result.lat, result.lon])
+        .bindPopup("This is a test");
+
+      // Add marker to markers array
+      markers.push(branchMarker);
+    }
+
+    // Create layer with markers and add to myMap
+    createMap(L.layerGroup(markers));
+  
+});
+librariesFilter();

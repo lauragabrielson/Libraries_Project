@@ -128,8 +128,8 @@ function libraryClusterMarkers(state) {
     var markers = L.markerClusterGroup();
 
     // Filter the data by state
-    var testState = "Iowa";
-    var filteredData = data.filter(d => d.state_name === testState);
+    // var testState = "Iowa";
+    var filteredData = data.filter(d => d.state_name === state);
     console.log(filteredData);
 
     // Loop through data for lat/long
@@ -140,7 +140,10 @@ function libraryClusterMarkers(state) {
       if (location) {
         // Add new marker to cluster group and bind popup
         markers.addLayer(L.marker([filteredData[i].lat, filteredData[i].lon])
-          .bindPopup("this is a test"));
+          .bindPopup("Library System/Branch Name: " + data[i].library_name + 
+          "</br> State: " + data[i].state +  
+          "</br> Service Population: " + data[i].services_population +
+          "</br> Number of Bookmobiles: " + data[i].bookmobiles));
       };
     }
     // Add to map
