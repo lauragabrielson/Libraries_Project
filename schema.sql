@@ -1,6 +1,7 @@
 create table libraries (
 id serial primary key,
 state varchar(10),
+state_name varchar (20),
 library_id varchar,
 library_name varchar,
 street_address varchar,
@@ -40,3 +41,17 @@ downloadable_video float
 );
 
 select * from libraries;
+
+select * from libraries 
+where lon=0;
+
+select * from libraries 
+where lat=0;
+
+select * from libraries 
+where state='MN';
+
+drop table libraries;
+
+
+
