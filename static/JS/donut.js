@@ -81,15 +81,13 @@ function DrawDonut(state) {
           .duration(175)
           .style("opacity", 1)
           .attr('d', d3.arc()
-            .innerRadius(115)
-            .outerRadius(radius + 5)
+            .innerRadius(110)
+            .outerRadius(radius + 10)
             .cornerRadius(10)
           )
       }
+
       var mousemove = function(d) {
-
-        console.log(d);
-
         Tooltip
           .html(
             `<center><b>${d.data.key}</b> </br>
@@ -97,8 +95,9 @@ function DrawDonut(state) {
             ${Math.round((d.data.value / totalStaff) * 100)}%</center>`
             )
           .style("left", (d3.mouse(this)[0]+275) + "px")
-          .style("top", (d3.mouse(this)[1]+200) + "px")
+          .style("top", (d3.mouse(this)[1]+250) + "px")
       }
+
       var mouseleave = function(d) {
         Tooltip
           .style("opacity", 0)
