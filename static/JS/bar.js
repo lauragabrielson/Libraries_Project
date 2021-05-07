@@ -181,7 +181,7 @@ d3.json("/libraries_bar").then(function (data) {
 // }
 };
 
-//////***************UPDATE BARGRAPH */
+//////***************UPDATE BARGRAPH *********************/
 
 function UpdateBargraph(state) {
     // Query the endpoint that returns a JSON ...
