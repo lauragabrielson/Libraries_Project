@@ -73,6 +73,11 @@ d3.json(link).then(function(data) {
           var stateName = event.sourceTarget.feature.properties.NAME;
           console.log("Looking at event variable:");
           console.log(stateName);
+
+          // Call update chart functions
+          DrawBargraph(stateName);
+          // UpdateDonut(stateName);
+
         }
       });
 
@@ -80,7 +85,7 @@ d3.json(link).then(function(data) {
       // console.log(data);
       // stateName = data.features.properties.name
       // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup("<h1>This is a Test</h1>");
+      // layer.bindPopup(stateName);
     } 
   }).addTo(myMap);
   
