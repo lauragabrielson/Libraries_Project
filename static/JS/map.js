@@ -70,13 +70,49 @@ d3.json(link).then(function(data) {
         // The problem I'm having is that trying to access the data in the json returns undefined
         click: function(event) {
           myMap.fitBounds(event.target.getBounds());
-          var stateName = event.sourceTarget.feature.properties.NAME;
+          var newState = event.sourceTarget.feature.properties.NAME;
           console.log("Looking at event variable:");
-          console.log(stateName);
+          console.log(newState);
 
           // Call update chart functions
-          DrawBargraph(stateName);
-          // UpdateDonut(stateName);
+          // DrawBargraph(newState);
+          // UpdateDonut(newState);
+
+          // Grab JSON data of library branches.
+
+          var url = "/libraries_map"
+
+          d3.json(url).then(function(data) {
+
+            //  Let's try some marker clusters
+
+            // Make a marker cluster group
+            var markers = L.markerClusterGroup();
+
+            // Loop through data to get lat/long
+            for (var i = 0; i < data.length; i++) {
+
+              if (data.state_name = newState) {
+
+                var location = [data[i].lat, data[i].lon]
+
+                if (location) {
+                  markers.addLayer(L.marker([data[i].lat, data[i].lon])
+                  .bindPopup("Library System/Branch Name: " + data[i].library_name + 
+                    "</br> State: " + data[i].state +  
+                    "</br> Service Population: " + data[i].services_population +
+                    "</br> Number of Bookmobiles: " + data[i].bookmobiles));
+                };
+
+              };
+
+              
+            };
+            
+            // Add cluster layer to map
+            myMap.addLayer(markers);
+
+          })
 
         }
       });
@@ -123,35 +159,35 @@ function StatePopup(state) {
 StatePopup();
 
 
-// Grab JSON data of library branches.
+// // Grab JSON data of library branches.
 
-var url = "/libraries_map"
+// var url = "/libraries_map"
 
-d3.json(url).then(function(data) {
+// d3.json(url).then(function(data) {
 
-  //  Let's try some marker clusters
+//   //  Let's try some marker clusters
 
-  // Make a marker cluster group
-  var markers = L.markerClusterGroup();
+//   // Make a marker cluster group
+//   var markers = L.markerClusterGroup();
 
-  // Loop through data to get lat/long
-  for (var i = 0; i < data.length; i++) {
+//   // Loop through data to get lat/long
+//   for (var i = 0; i < data.length; i++) {
 
-    var location = [data[i].lat, data[i].lon]
+//     var location = [data[i].lat, data[i].lon]
 
-    if (location) {
-      markers.addLayer(L.marker([data[i].lat, data[i].lon])
-      .bindPopup("Library System/Branch Name: " + data[i].library_name + 
-        "</br> State: " + data[i].state +  
-        "</br> Service Population: " + data[i].services_population +
-        "</br> Number of Bookmobiles: " + data[i].bookmobiles));
-    }
-  };
+//     if (location) {
+//       markers.addLayer(L.marker([data[i].lat, data[i].lon])
+//       .bindPopup("Library System/Branch Name: " + data[i].library_name + 
+//         "</br> State: " + data[i].state +  
+//         "</br> Service Population: " + data[i].services_population +
+//         "</br> Number of Bookmobiles: " + data[i].bookmobiles));
+//     }
+//   };
   
-  // Add cluster layer to map
-  myMap.addLayer(markers);
+//   // Add cluster layer to map
+//   myMap.addLayer(markers);
 
-})
+// })
 
 // var url = "/libraries_map"
 
