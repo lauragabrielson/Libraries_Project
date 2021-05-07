@@ -70,6 +70,14 @@ d3.json(link).then(function(data) {
         // The problem I'm having is that trying to access the data in the json returns undefined
         click: function(event) {
           myMap.fitBounds(event.target.getBounds());
+          var newState = event.sourceTarget.feature.properties.NAME;
+          console.log("Looking at event variable:");
+          console.log(newState);
+
+          // Call update chart functions
+          UpdateBargraph(newState);
+          // UpdateDonut(newState);
+          
         }
       });
 
@@ -77,7 +85,7 @@ d3.json(link).then(function(data) {
       // console.log(data);
       // stateName = data.features.properties.name
       // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup("<h1>This is a Test</h1>");
+      // layer.bindPopup("<h1>This is a Test</h1>");
     } 
   }).addTo(myMap);
   
