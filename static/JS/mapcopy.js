@@ -30,15 +30,14 @@ var link = "static/data/us_states.json";
 // Many thanks to Eric Celeste for the geojson of state boundaries https://eric.clst.org/tech/usgeojson/
 var link = "static/data/us_states.json";
 
-// Re-keying geojson code for clean up
-
-// Grab JSON data for state outlines
+// Grab JSON data for state outlines.
 d3.json(link).then(function(data) {
-  console.log("First log");
-  console.log(data);
+  console.log("logging data:");
+  // console.log(data);
+  states = data.features;
+  console.log(states);
 
-  // Style each feature yellow with an opacity of .4
-  L.geoJson(data, {
+  L.geoJson(data, { 
     style: function(feature) {
       return {
         color: "white",
@@ -47,75 +46,98 @@ d3.json(link).then(function(data) {
         weight: 1.5
       };
     },
-
-    // Call on each feature to make the state outlined respond
+    // Call on each feature to make state clickable
     onEachFeature: function(feature, layer) {
 
-      // Set responses to mouse movement
+      // Set mouse event to change state opacity
       layer.on({
-        // When moused over, highlight with increased opacity
+        // On scrollover, increase opacity
         mouseover: function(event) {
           layer = event.target;
           layer.setStyle({
             fillOpacity: 0.7
           });
         },
-        // Return to original opacity on mouseout
+        // Return to lower opacity on mouseout
         mouseout: function(event) {
           layer = event.target;
           layer.setStyle({
             fillOpacity: 0.4
           });
         },
-        // Responses when clicked
+        // Zoom into state on click
+        // This also feels like the plac where we need to collect the state name
+        // The problem I'm having is that trying to access the data in the json returns undefined
         click: function(event) {
-          // Fit view to bounds of the feature/state selected
           myMap.fitBounds(event.target.getBounds());
-          // Set variable newState to capture selected state name
           var newState = event.sourceTarget.feature.properties.NAME;
-          console.log("Looking at event variable");
+          console.log("Looking at event variable:");
           console.log(newState);
 
-          // Call functions to update visuals with newState selected
+          // Call update chart functions
           // DrawBargraph(newState);
           // UpdateDonut(newState);
 
-          // Create cluster markers for locations within newState selected
+          // Grab JSON data of library branches.
+
           var url = "/libraries_map"
 
           d3.json(url).then(function(data) {
+
+            //  Let's try some state bound marker clusters
             console.log(data);
 
-            // Filter data by newState selected
-            var stateTest = "Iowa";
-            var stateData = data.filter (d => d.state_name = stateTest);
-            console.log(stateData);
+            // Filter data by state clicked
+            stateData = data.filter (d => d.state === newState);
+            console.log(newState);
+
+            // Make a marker cluster group
+            var markers = L.markerClusterGroup();
+
+            // Loop through data to get lat/long
+            for (var i = 0; i < stateData.length; i++) {
+
+              // if (stateData.state_name = newState) {
+              //   // console.log("Testing state clusters");
+              //   // console.log(newState);
+
+                var location = [data[i].lat, data[i].lon]
+
+                if (location) {
+                  markers.addLayer(L.marker([data[i].lat, data[i].lon])
+                  .bindPopup("Library System/Branch Name: " + data[i].library_name + 
+                    "</br> State: " + data[i].state +  
+                    "</br> Service Population: " + data[i].services_population +
+                    "</br> Number of Bookmobiles: " + data[i].bookmobiles));
+                };
+
+              };
+
+              
+            });
+            
+            // Add cluster layer to map
+            myMap.addLayer(markers);
+
           })
+
         }
-      })
-    }
+      });
 
-
+      // Add state pop up if possible
+      // console.log(data);
+      // stateName = data.features.properties.name
+      // Giving each feature a pop-up with information pertinent to it
+      // layer.bindPopup(stateName);
+    } 
   }).addTo(myMap);
+  
+  // // Test rectangle in northern Montana
+  // L.polygon([[48.84, -110.34], [48.86, -112.36]]).bindTooltip("test", {
+  //   sticky: true
+  // }).addTo(myMap);
 
-})
-
-
-// Testing filtering on libraries data
-function librariesFilter(state) {
-  d3.json("/libraries_map").then(function(data) {
-    console.log("Test function");
-    console.log(data);
-
-    // Filter by state
-    var testState = "Iowa";
-    console.log(testState);
-    var result = data.filter(d => d.state_name === testState);
-    console.log(result);
-  });
-};
-librariesFilter();
-
+});
 
 // A third d3.json to filter for state pop ups?
 function StatePopup(state) {
