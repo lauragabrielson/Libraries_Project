@@ -16,25 +16,20 @@ html {
 .carousel {
   position: relative;
   text-align: center;
-  color: white;
 }
 
-.carousel-image {
+/* .carousel-image {
   position: absolute;
-  top: 0;
+  top: 0%;
   left: 50%;
-  transform: translate(-50%, 0%);
-}
+  transform: translate(-50%, -150%);
+} */
 
 .carousel-text {
   position: absolute;
   top: 0%;
   left: 50%;
   transform: translate(-50%, 10%);
-}
-
-.slick {
-  background-color: rgba(0, 0, 0, 0.4);
 }
 
 h2 {
