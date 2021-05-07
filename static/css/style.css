@@ -16,10 +16,9 @@ html {
 .carousel {
   position: relative;
   text-align: center;
-  color: white;
 }
 
-.carousel-image {
+/* .carousel-image {
   position: absolute;
   top: 0;
   left: 50%;
@@ -31,11 +30,7 @@ html {
   top: 0%;
   left: 50%;
   transform: translate(-50%, 10%);
-}
-
-.slick {
-  background-color: rgba(0, 0, 0, 0.4);
-}
+} */
 
 h2 {
   color: white;
