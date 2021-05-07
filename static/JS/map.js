@@ -1,9 +1,5 @@
 console.log("map.js loaded")
 
-testFunction = data => {
-  return `This is a test`
-}
-
 // Creating map object
 var myMap = L.map("map", {
   center: [39.8283, -98.5795],
@@ -26,11 +22,7 @@ accessToken: API_KEY
 // Many thanks to Eric Celeste for the geojson of state boundaries https://eric.clst.org/tech/usgeojson/
 var link = "static/data/us_states.json";
 
-// Use this link to get the json data.
-// Many thanks to Eric Celeste for the geojson of state boundaries https://eric.clst.org/tech/usgeojson/
-var link = "static/data/us_states.json";
-
-// Re-keying geojson code for clean up
+// Re-keying geojson code for clean up and adding call to function defined below
 
 // Grab JSON data for state outlines
 d3.json(link).then(function(data) {
@@ -59,6 +51,10 @@ d3.json(link).then(function(data) {
           layer.setStyle({
             fillOpacity: 0.7
           });
+          var newState = event.sourceTarget.feature.properties.NAME;
+          // console.log("Looking at event variable");
+          // console.log(newState);
+          stateSummary(newState);
         },
         // Return to original opacity on mouseout
         mouseout: function(event) {
@@ -66,15 +62,20 @@ d3.json(link).then(function(data) {
           layer.setStyle({
             fillOpacity: 0.4
           });
+          info.remove(myMap);
         },
         // Responses when clicked
         click: function(event) {
           // Fit view to bounds of the feature/state selected
           myMap.fitBounds(event.target.getBounds());
           // Set variable newState to capture selected state name
+
+          // info.remove(myMap);
+
           var newState = event.sourceTarget.feature.properties.NAME;
           console.log("Looking at event variable");
           console.log(newState);
+          // stateSummary(newState);
 
           // Call functions to update visuals with newState selected
           // DrawBargraph(newState);
@@ -82,6 +83,9 @@ d3.json(link).then(function(data) {
 
           // Call function to create markerclusters
           libraryClusterMarkers(newState);
+
+          // // Call function to produce summary
+          // stateSummary(newState);
         
         }
       })
@@ -92,37 +96,13 @@ d3.json(link).then(function(data) {
 
 })
 
-// Trying a libraries filter function again
-
-function libraryMarkers(state) {
-  
-  // Call json for data
-  d3.json("/libraries_map").then(function(data) {
-    console.log(data);
-
-    // Filter the data by state
-    var testState = "Iowa";
-    var filteredData = data.filter(d => d.state_name === testState);
-    console.log(filteredData);
-
-    // Loop through filtereData and create a marker for each location
-    for (var i = 0; i < filteredData.length; i++) {
-      var library = filteredData[i];
-      L.marker([library.lat, library.lon])
-        .bindPopup("This is a test")
-        .addTo(myMap);
-    };
-  });
-
-};
-
-// Trying a cluster marker on click by state as function to call
+// Create a function to generate marker clusters based on selected state
 
 function libraryClusterMarkers(state) {
   
   // Call json for data
   d3.json("/libraries_map").then(function(data) {
-    console.log(data);
+    // console.log(data);
 
     // Create variable for cluster groups
     var markers = L.markerClusterGroup();
@@ -130,7 +110,8 @@ function libraryClusterMarkers(state) {
     // Filter the data by state
     // var testState = "Iowa";
     var filteredData = data.filter(d => d.state_name === state);
-    console.log(filteredData);
+    // console.log("look at filteredData");
+    // console.log(filteredData);
 
     // Loop through data for lat/long
     for (var i = 0; i < filteredData.length; i++) {
@@ -140,10 +121,10 @@ function libraryClusterMarkers(state) {
       if (location) {
         // Add new marker to cluster group and bind popup
         markers.addLayer(L.marker([filteredData[i].lat, filteredData[i].lon])
-          .bindPopup("Library System/Branch Name: " + data[i].library_name + 
-          "</br> State: " + data[i].state +  
-          "</br> Service Population: " + data[i].services_population +
-          "</br> Number of Bookmobiles: " + data[i].bookmobiles));
+          .bindPopup("Library System/Branch Name: " + filteredData[i].library_name + 
+          "</br> State: " + filteredData[i].state +  
+          "</br> Service Population: " + filteredData[i].services_population +
+          "</br> Number of Bookmobiles: " + filteredData[i].bookmobiles));
       };
     }
     // Add to map
@@ -155,6 +136,84 @@ function libraryClusterMarkers(state) {
 // console.log("testing clustermarker function")
 // libraryClusterMarkers();
 
+// Trying a info corner for state summary
+ var info = L.control();
+function stateSummary(state) {
+  d3.json("/libraries_map").then(function (data) {
+    console.log(data);
+
+    // Filter the data by state
+    var testState = "Iowa";
+    var filteredData = data.filter(d => d.state_name === testState);
+    console.log("popup test")
+    console.log(filteredData);
+
+    // Get bookmobile total
+    var bookmobileSum = filteredData => {
+      sum = 0;
+      for (var i = 0; i < filteredData.length; i++) {
+        sum += filteredData[i].bookmobiles;
+      };
+      return sum;
+    };
+    bookmobiles = bookmobileSum(filteredData)
+    console.log(bookmobiles)
+
+    // Get service population total
+    var stateServicePop = filteredData => {
+      sum = 0;
+      for (var i = 0; i < filteredData.length; i++) {
+        sum += filteredData[i].services_population;
+      };
+      return sum;
+    };
+    servicePop = stateServicePop(filteredData)
+    console.log(servicePop)
+
+    // Update summary
+    // updateSummary(state);
+    // var info = L.control();
+
+    info.onAdd = function (map) {
+      this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+      this.update();
+      return this._div;
+    };
+
+    // method that we will use to update the control based on feature properties passed
+    info.update = function (filteredData) {
+        this._div.innerHTML = '<h4>Libraries Summary</h4>' +  state + '<h4>Service Population</h4>' + servicePop + '<h4>Bookmobiles</h4>' + bookmobiles;
+    };
+
+    info.addTo(myMap);
+    })
+   
+
+  }
+
+// stateSummary();
+
+// function updateSummary(state) {
+//   // Set up info box
+//   var info = L.control();
+
+//   d3.json("/libraries_map").then(function (data) {
+//     info.onAdd = function (map) {
+//       this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+//       this.update();
+//       return this._div;
+//   };
+
+//   // method that we will use to update the control based on feature properties passed
+//   info.update = function (props) {
+//       this._div.innerHTML = '<h4>State Summary</h4>' + 'Hover over a state';
+//   };
+
+//   info.addTo(myMap);
+//   })
+
+
+// }
 
 
 
@@ -183,68 +242,3 @@ function libraryClusterMarkers(state) {
 
 // }
 // StatePopup();
-
-
-// // Grab JSON data of library branches.
-
-// var url = "/libraries_map"
-
-// d3.json(url).then(function(data) {
-
-//   //  Let's try some marker clusters
-
-//   // Make a marker cluster group
-//   var markers = L.markerClusterGroup();
-
-//   // Loop through data to get lat/long
-//   for (var i = 0; i < data.length; i++) {
-
-//     var location = [data[i].lat, data[i].lon]
-
-//     if (location) {
-//       markers.addLayer(L.marker([data[i].lat, data[i].lon])
-//       .bindPopup("Library System/Branch Name: " + data[i].library_name + 
-//         "</br> State: " + data[i].state +  
-//         "</br> Service Population: " + data[i].services_population +
-//         "</br> Number of Bookmobiles: " + data[i].bookmobiles));
-//     }
-//   };
-  
-//   // Add cluster layer to map
-//   myMap.addLayer(markers);
-
-// })
-
-// var url = "/libraries_map"
-
-// // Optional heat array below
-// d3.json(url).then(function(data) {
-//   console.log(data);
-
-//   // Create and add heatLayer
-//   var heatArray = [];
-
-//   for (var i = 0; i < data.length; i++) {
-
-//     heatArray.push([data[i].lat, data[i].lon]);
-
-//   };
-//   console.log(heatArray);
-//   var heat = L.heatLayer(heatArray, {
-//     radius: 50,
-//     blur: 10
-//   }).addTo(myMap);
-
-//   // // Add markers for each location
-//   // var pinArray = []
-
-//   // for (var i = 0; i < data.length; i++) {
-
-//   //   var location = [data[i].lat, data[i].lon]
-
-//   //   if (location) {
-//   //     L.marker([data[i].lat, data[i].lon]).addTo(myMap);
-//   //   }
-//   // };
-
-// });
