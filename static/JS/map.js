@@ -69,17 +69,17 @@ d3.json(link).then(function(data) {
           // Fit view to bounds of the feature/state selected
           myMap.fitBounds(event.target.getBounds());
           // Set variable newState to capture selected state name
-
+          
           // info.remove(myMap);
-
+          
           var newState = event.sourceTarget.feature.properties.NAME;
-          console.log("Looking at event variable");
+          console.log("Looking at event variable:");
           console.log(newState);
           // stateSummary(newState);
 
-          // Call functions to update visuals with newState selected
-          // DrawBargraph(newState);
-          // UpdateDonut(newState);
+          // Call update chart functions
+          UpdateBargraph(newState);
+          UpdateDonut(newState);
 
           // Call function to create markerclusters
           libraryClusterMarkers(newState);

@@ -60,38 +60,19 @@ console.log("Loaded main.js");
 // }
 
 
-// function InitializeDashboard() {
-
-//     DrawMap();
-
-
-// function InitializeDashboard() {
-
-//     DrawMap();
-
-//     var initialState = "Minnesota";
-//     DrawDonut(initialState); 
-
-//     UpdateLibraryFacts(); 
-
-//     var initialState = "Minnesota";
-//     DrawDonut(initialState); 
 
 
 
-//     UpdateLibraryFacts(); 
+function InitializeDashboard() {
+
+    // DrawMap();
+    DrawDonut();
+    DrawBargraph();
+
+}
 
 
-// }
+InitializeDashboard(); 
 
 
-// InitializeDashboard(); 
 
-
-// }
-
-// InitializeDashboard(); 
-
-
-DrawDonut();
-DrawBargraph();
