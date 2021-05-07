@@ -115,6 +115,32 @@ def libraries_bar():
     # Return the jsonified result. 
     return jsonify(all_collections)
 
+@app.route("/libraries_summary")
+def libraries_summary():
+    '''Query the database and return the results as a JSON. '''
+
+    # Open a session, run the query, and then close the session again
+    session = Session(engine)
+    results = session.query(table.state_name, table.library_id, table.services_population, table.mls_librarians, table.librarians, table.total_staff, table.total_operating_revenue).all()
+    session.close()
+
+    # Create a list of dictionaries
+    all_state_data = []
+    for state_name, library_id, services_population, mls_librarians, librarians, total_staff, total_operating_revenue in results:
+        dict = {}
+        dict["state_name"] = state_name
+        dict["library_id"] = library_id
+        dict["services_population"] = services_population
+        dict["mls_librarians"] = mls_librarians
+        dict["librarians"] = librarians
+        dict["total_staff"] = total_staff
+        dict["total_operating_revenue"] = total_operating_revenue
+        all_state_data.append(dict)
+
+        # Return the jsonified results
+        return jsonify(all_state_data)
+
+
 # This statement is required for Flask to do its job. 
 # Think of it as chocolate cake recipe. 
 if __name__ == '__main__':
