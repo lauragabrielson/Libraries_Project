@@ -81,7 +81,7 @@ d3.json(link).then(function(data) {
           // UpdateDonut(newState);
 
           // Call function to create markerclusters
-          libraryMarkers(newState);
+          libraryClusterMarkers(newState);
         
         }
       })
@@ -115,8 +115,42 @@ function libraryMarkers(state) {
   });
 
 };
-// console.log("testing marker function")
-// libraryMarkers();
+
+// Trying a cluster marker on click by state as function to call
+
+function libraryClusterMarkers(state) {
+  
+  // Call json for data
+  d3.json("/libraries_map").then(function(data) {
+    console.log(data);
+
+    // Create variable for cluster groups
+    var markers = L.markerClusterGroup();
+
+    // Filter the data by state
+    var testState = "Iowa";
+    var filteredData = data.filter(d => d.state_name === testState);
+    console.log(filteredData);
+
+    // Loop through data for lat/long
+    for (var i = 0; i < filteredData.length; i++) {
+      var location = [filteredData[i].lat, filteredData[i].lon];
+
+      // Check for location
+      if (location) {
+        // Add new marker to cluster group and bind popup
+        markers.addLayer(L.marker([filteredData[i].lat, filteredData[i].lon])
+          .bindPopup("this is a test"));
+      };
+    }
+    // Add to map
+    myMap.addLayer(markers);
+  });
+
+};
+
+// console.log("testing clustermarker function")
+// libraryClusterMarkers();
 
 
 
