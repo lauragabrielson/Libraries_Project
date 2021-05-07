@@ -56,12 +56,3 @@ h6 {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-/* Testing a legend
-
-/* Set additional parameters for the legend including how much space each line will take */
-.legend {
-  background-color: “black”;
-  line-height: 25px;
-  color: #555;
-  width: auto;
-}
