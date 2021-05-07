@@ -235,9 +235,12 @@ function UpdateDonut(state) {
   
     // The radius of the pieplot is half the width or half the height (smallest one).
     var radius = Math.min(width, height) / 2 - margin;
-  
+
     // append the svg object to the div
     var pieGroup = d3.select("#donut")
+      .selectAll("*").remove();
+
+    var pieGroup = d3.select("#donut")  
       .append("svg")
       .attr("width", width)
       .attr("height", height)
