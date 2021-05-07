@@ -1,6 +1,6 @@
 console.log('donut.js loaded');
 
-function DrawDonut(data) {
+function DrawDonut(state) {
   var employeeSum = data => {
       sum = 0;
       for (var i = 0; i < data.length; i++) {
@@ -30,9 +30,9 @@ function DrawDonut(data) {
 
     // console.log(data);
 
-    var employees = Math.round(employeeSum(result) * 100) / 100;
-    var librarians = Math.round(librarianSum(result) * 100) / 100;
-    var MLSlibrarians = Math.round(MLSlibrarianSum(result) * 100) / 100;
+    var employees = Math.round(employeeSum(data) * 100) / 100;
+    var librarians = Math.round(librarianSum(data) * 100) / 100;
+    var MLSlibrarians = Math.round(MLSlibrarianSum(data) * 100) / 100;
     var totalStaff = employees + librarians + MLSlibrarians
 
     staffDistribution = {
@@ -182,26 +182,26 @@ function DrawDonut(data) {
 };
 
 function UpdateDonut(state) {
-  var employeeSum = data => {
+  var employeeSum = result => {
       sum = 0;
-      for (var i = 0; i < data.length; i++) {
-          sum += data[i].employees;
+      for (var i = 0; i < result.length; i++) {
+          sum += result[i].employees;
       };
       return sum;
   };
 
-  var librarianSum = data => {
+  var librarianSum = result => {
       sum = 0;
-      for (var i = 0; i < data.length; i++) {
-          sum += data[i].librarians;
+      for (var i = 0; i < result.length; i++) {
+          sum += result[i].librarians;
       };
       return sum;
   };
 
-  var MLSlibrarianSum = data => {
+  var MLSlibrarianSum = result => {
       sum = 0;
-      for (var i = 0; i < data.length; i++) {
-          sum += data[i].mls_librarians;
+      for (var i = 0; i < result.length; i++) {
+          sum += result[i].mls_librarians;
       };
       return sum;
   };
@@ -238,7 +238,7 @@ function UpdateDonut(state) {
   
     // append the svg object to the div
     var pieGroup = d3.select("#donut")
-      .append("svg")
+      .attr("svg")
       .attr("width", width)
       .attr("height", height)
       .append("g")
