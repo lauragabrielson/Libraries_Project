@@ -3,15 +3,16 @@ console.log("Loaded bar.js");
 
 
 function DrawBargraph(state) {
-// Query the endpoint that returns a JSON ...
+// Query the endpoint that returns a JSON
 d3.json("/libraries_bar").then(function (data) {
 
 
-    // ... and dump that JSON to the console for inspection
+    // add JSON to the console for inspection
     console.log(data); 
     
-    console.log(state);
+    // console.log(state);
 
+// Create variables and return sum of different collections
     var audioSum = data => {
         sum = 0;
         for (var i = 0; i < data.length; i++) {
@@ -74,15 +75,16 @@ d3.json("/libraries_bar").then(function (data) {
 
     physicalVideo = physicalVideoSum(data)
 
+// Add sums to console for inspection
     console.log(`Print:${printCol}, Audio:${audio}, Video: ${physicalVideo}`)
     console.log(`Digital:${digital}, Audio:${downloadAudio}, Video: ${downloadVideo}`)
   
-//     // Create the trace
+// Select variables to graph
     collections = [printCol, audio, physicalVideo]
     digital_collections = [digital, downloadAudio, downloadVideo]
     var collection_names = ["Print", "Audio", "Video"]
     var digital_collection_names = ["Print", "Audio", "Video"]
-
+//     // Create the traces
     var trace1 = {
         x: collections,
         y: collection_names,
@@ -151,25 +153,26 @@ d3.json("/libraries_bar").then(function (data) {
 // }
 };
 
-//////***************UPDATE BARGRAPH *********************/
+//////***************UPDATE BARGRAPH Function *********************/
 
 function UpdateBargraph(state) {
-    // Query the endpoint that returns a JSON ...
+    // Query the endpoint that returns a JSON
     d3.json("/libraries_bar").then(function (data) {
     
     
-        // ... and dump that JSON to the console for inspection
+        //add JSON to the console for inspection
         console.log(data); 
         
         // console.log(state);
-    
+        // filter data by state selected
         var result = data.filter(d => d.state_name === state);
     
         console.log(result);
     
         
         console.log(state);
-    
+
+    // Create variables and sum of different collections by state
         var audioSum = result => {
             sum = 0;
             for (var i = 0; i < result.length; i++) {
@@ -232,16 +235,17 @@ function UpdateBargraph(state) {
     
         physicalVideo = physicalVideoSum(result)
     
+        // add totals to console for inspection
         console.log(`Print:${printCol}, Audio:${audio}, Video: ${physicalVideo}`)
         console.log(`Digital:${digital}, Audio:${downloadAudio}, Video: ${downloadVideo}`)
       
-    //     // Create the trace
+        // Select variables to graph
         collections = [printCol, audio, physicalVideo]
         digital_collections = [digital, downloadAudio, downloadVideo]
         var collection_names = ["Print", "Audio", "Video"]
         var digital_collection_names = ["Print", "Audio", "Video"]
     
-      
+         // Create the traces
         var trace1 = {
             x: collections,
             y: collection_names,
