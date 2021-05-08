@@ -129,8 +129,7 @@ function libraryClusterMarkers(state) {
         markers.addLayer(L.marker([filteredData[i].lat, filteredData[i].lon])
           .bindPopup("Library System/Branch Name: " + filteredData[i].library_name + 
           "</br> State: " + filteredData[i].state +  
-          "</br> Service Population: " + formatNumber(filteredData[i].services_population) +
-          "</br> Number of Bookmobiles: " + filteredData[i].bookmobiles));
+          "</br> Service Population: " + formatNumber(filteredData[i].services_population)));
       };
     }
     // Add to map
@@ -189,7 +188,7 @@ function stateSummary(state) {
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (filteredData) {
-        this._div.innerHTML = '<h4>Libraries Summary</h4>' +  state + '<h4>Service Population</h4>' + formatNumber(servicePop) + '<h4>Bookmobiles</h4>' + bookmobiles;
+        this._div.innerHTML = '<h4>Libraries Summary</h4>' +  state + '<h4>Service Population</h4>' + formatNumber(servicePop);
     };
 
     info.addTo(myMap);
