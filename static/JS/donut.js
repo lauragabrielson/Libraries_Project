@@ -1,33 +1,34 @@
 console.log('donut.js loaded');
 
+var employeeSum = data => {
+  sum = 0;
+  for (var i = 0; i < data.length; i++) {
+      sum += data[i].employees;
+  };
+  return sum;
+};
+
+var librarianSum = data => {
+  sum = 0;
+  for (var i = 0; i < data.length; i++) {
+      sum += data[i].librarians;
+  };
+  return sum;
+};
+
+var MLSlibrarianSum = data => {
+  sum = 0;
+  for (var i = 0; i < data.length; i++) {
+      sum += data[i].mls_librarians;
+  };
+  return sum;
+};
+
+var formatNumber = num => {
+return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+};
+
 function DrawDonut(state) {
-  var employeeSum = data => {
-      sum = 0;
-      for (var i = 0; i < data.length; i++) {
-          sum += data[i].employees;
-      };
-      return sum;
-  };
-
-  var librarianSum = data => {
-      sum = 0;
-      for (var i = 0; i < data.length; i++) {
-          sum += data[i].librarians;
-      };
-      return sum;
-  };
-
-  var MLSlibrarianSum = data => {
-      sum = 0;
-      for (var i = 0; i < data.length; i++) {
-          sum += data[i].mls_librarians;
-      };
-      return sum;
-  };
-
-  var formatNumber = num => {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-  };
 
   // load data
   d3.json('/donut').then(data => {
@@ -156,10 +157,6 @@ function DrawDonut(state) {
       .attr('fill', function(d, i) 
         { return( colorScheme(d.data.key) )
         })
-      // .attr('id', function (d) { return d.data.key;})
-      // .attr('data', function (d) { console.log(d.data.value); return d.data.value;})
-      // .attr("stroke", "white")
-      // .style("stroke-width", "2px")
       .style('border-radius', '20px')
       .style("opacity", .9)
       .on('mouseover', mouseover)
@@ -190,29 +187,6 @@ function DrawDonut(state) {
 };
 
 function UpdateDonut(state) {
-  var employeeSum = result => {
-      sum = 0;
-      for (var i = 0; i < result.length; i++) {
-          sum += result[i].employees;
-      };
-      return sum;
-  };
-
-  var librarianSum = result => {
-      sum = 0;
-      for (var i = 0; i < result.length; i++) {
-          sum += result[i].librarians;
-      };
-      return sum;
-  };
-
-  var MLSlibrarianSum = result => {
-      sum = 0;
-      for (var i = 0; i < result.length; i++) {
-          sum += result[i].mls_librarians;
-      };
-      return sum;
-  };
 
   // load data
   d3.json('/donut').then(data => {
@@ -226,8 +200,6 @@ function UpdateDonut(state) {
     var MLSlibrarians = Math.round(MLSlibrarianSum(result) * 100) / 100;
     var totalStaff = employees + librarians + MLSlibrarians
 
-    employees = 
-
     staffDistribution = {
         'Employees': employees,
         'Librarians': librarians,
@@ -239,9 +211,9 @@ function UpdateDonut(state) {
     console.log(staffDistribution);
   
     // set the dimensions and margins of the graph
-    var width = 475
-        height = 475
-        margin = 35;
+    var width = 350
+        height = 350
+        margin = 12;
   
     // The radius of the pieplot is half the width or half the height (smallest one).
     var radius = Math.min(width, height) / 2 - margin;
@@ -309,14 +281,6 @@ function UpdateDonut(state) {
           .cornerRadius(10)
         )
     }
-  
-    // pieGroup.append('text')
-    //   // .attr('dy', '.25em')
-    //   .style('text-anchor', 'middle')
-    //   .style('font-size', '75px')
-    //   .attr('class', 'inside')
-    //   .attr('y', 25)
-    //   .text(`${compliancePercentage}%`);
   
     // Compute the position of each group on the pie
     var pie = d3.pie()
