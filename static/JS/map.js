@@ -125,7 +125,7 @@ function libraryClusterMarkers(state) {
         markers.addLayer(L.marker([filteredData[i].lat, filteredData[i].lon])
           .bindPopup("Library System/Branch Name: " + filteredData[i].library_name + 
           "</br> State: " + filteredData[i].state +  
-          "</br> Service Population: " + filteredData[i].services_population +
+          "</br> Service Population: " + formatNumber(filteredData[i].services_population) +
           "</br> Number of Bookmobiles: " + filteredData[i].bookmobiles));
       };
     }

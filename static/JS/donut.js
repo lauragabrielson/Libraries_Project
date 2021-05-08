@@ -25,6 +25,10 @@ function DrawDonut(state) {
       return sum;
   };
 
+  var formatNumber = num => {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  };
+
   // load data
   d3.json('/donut').then(data => {
 
@@ -34,6 +38,10 @@ function DrawDonut(state) {
     var librarians = Math.round(librarianSum(data) * 100) / 100;
     var MLSlibrarians = Math.round(MLSlibrarianSum(data) * 100) / 100;
     var totalStaff = employees + librarians + MLSlibrarians
+
+    // employees = formatNumber(employees);
+
+    // console.log(employees);
 
     staffDistribution = {
         'Employees': employees,
@@ -91,7 +99,7 @@ function DrawDonut(state) {
       Tooltip
         .html(
           `<center><b>${d.data.key}</b> </br>
-          ${d.data.value} FTE </br>
+          ${formatNumber(d.data.value)} FTE </br>
           ${Math.round((d.data.value / totalStaff) * 100)}%</center>`
           )
         .style("left", (d3.mouse(this)[0]+275) + "px")
@@ -217,6 +225,8 @@ function UpdateDonut(state) {
     var librarians = Math.round(librarianSum(result) * 100) / 100;
     var MLSlibrarians = Math.round(MLSlibrarianSum(result) * 100) / 100;
     var totalStaff = employees + librarians + MLSlibrarians
+
+    employees = 
 
     staffDistribution = {
         'Employees': employees,
