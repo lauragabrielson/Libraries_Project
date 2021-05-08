@@ -26,69 +26,70 @@
 <body>
   <div class="container-fluid">
     <header>
-      <div class="header"><h1><strong>Public Library Systems of the US</strong></h1></div>
+      <div>
+        <h1><strong>Public Library Systems of the US</strong></h1>
+        <h3><i>Click on a state to filter the dashboard.</i></h3>
+      </div>
     </header>
 
-    <hr>
+    <hr style="clear: both"/>
     
-    <div class="row">
+    <div class="row justify-content-around" id="top-row">
       <div class="col-12 col-md-8">
-        <div id="map" style="width: 100%; height: 500px;"></div>
+        <div id="map" style="width: 100%; height: 416px;"></div>
       </div>
       <div class="col-12 col-md-4">
-        <h2 class="text-center">Staff Breakdown by Type</h2>
+        <h2 class="text-center" id="staff">Staff Breakdown by Type</h2>
         <h6 class="text-center"><i>MLS : Masters of Library Science | FTE: Full-Time Equivalent</i></h6>
         <div class="text-center" id="donut"></div>
       </div>
     </div>
     
-    <div class="row">
-      <div class="col-12 col-md-7">
+    <div class="row justify-content-around" id="bottom-row">
+      <div class="col-12 col-md-8">
         <div id="bar"></div>
       </div>
-      <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
+      <!-- <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
         <div id="slick-carousel">
           <h2>Weird Library Facts</h2>
           <div class="slick">
-            <!-- <div><img class="carousel" src="../carousel_images/guinness_book.png" alt="Guinness Book of Records"></div>
-            <div><img class="carousel" src="../carousel_images/ronald_mcnair.png" alt="Ronald Edwin McNair"></div>
-            <div><img class="carousel" src="../carousel_images/library_of_congress.png" alt="Library of Congress"></div>
-            <div><img class="carousel" src="../carousel_images/beinecke_rare_book.png" alt="Beinecke Rare Book Library"></div>
-            <div><img class="carousel" src="../carousel_images/federal_depository.png" alt="Federal Depositories"></div>
-            <div><img class="carousel" src="../carousel_images/HaskellLibraryBorderLine.png" alt="Haskell Library Border Line"></div>
-            <div><img class="carousel" src="../carousel_images/mafra_palace.png" alt="Mafra Palace Library Bats"></div>
-            <div><img class="carousel" src="../carousel_images/biblioburro.png" alt="Biblioburros"></div>
-            <div><img class="carousel" src="../carousel_images/human_library.png" alt="The Human Library"></div> -->
-            <!-- <div class="carousel"> -->
+            <div class="carousel">
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/guinness_book.png') }}" alt="Guinness Book of Records">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/ronald_mcnair.png') }}" alt="Ronald Edwin McNair">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/library_of_congress.png') }}" alt="Library of Congress">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/beinecke_rare_book.png') }}" alt="Beinecke Rare Book Library">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/federal_depository.png') }}" alt="Federal Depositories">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/haskell_library.png') }}" alt="Haskell Library Border Line">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/mafra_palace.png') }}" alt="Mafra Palace Library Bats">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/biblioburro.png') }}" alt="Biblioburros">
-            <!-- </div>   -->
-            <!-- <div class="carousel">   -->
+            </div>  
+            <div class="carousel">  
               <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/human_library.png') }}" alt="The Human Library">
-            <!-- </div>   -->
+            </div>  
+        </div>
+      </div> -->
+      <div class = "col-12 col-md-4">
+        <div>
+          <p id="p1"></p>
+        </div>
+        <div class="text-center">
+        <button type="button" class="btn btn-primary">Click here for fun library trivia!</button>
         </div>
       </div>
-
     </div>  
 
     <!-- Add bootstrap scripts -->
@@ -135,6 +136,9 @@
     <!-- Carousel JS -->
     <!-- <script type="text/javascript" src="../static/JS/carousel.js"></script> -->
     <script type="text/javascript" src="{{ url_for('static', filename='JS/carousel.js') }}"></script>
+
+    <!-- Text JS -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/text.js') }}"></script>
 
     <!-- Main JS -->
     <!-- <script type="text/javascript" src="../static/JS/main.js"></script> -->

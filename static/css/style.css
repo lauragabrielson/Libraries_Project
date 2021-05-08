@@ -13,24 +13,27 @@ html {
   height: 100%;
 }
 
+#top-row {
+  margin-bottom: 30px;
+}
+
+#bar {
+  height: 350px;
+  margin-bottom: 30px;
+}
+
 .carousel {
   position: relative;
   text-align: center;
 }
 
-/* .carousel-image {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0%);
+#p1{
+  font-size: 24px;
+  color: white;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 30px;
 }
-
-.carousel-text {
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 10%);
-} */
 
 h2 {
   color: white;
@@ -40,14 +43,37 @@ h6 {
   color: white;
 }
 
-.header {
+h1 {
   color: white;
   padding-left: 3rem !important;
   padding-right: 3rem !important;
   font-family: Garamond;
+  text-align: left;
+  float: left;
+}
+
+h3 {
+  color: white;
+  font-family: Garamond;
+  text-align: right;
+  float: right;
+  padding-right: 7rem !important;
 }
 
 #donut {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+#staff {
+  margin-top: -5px;
+  padding: 0;
+}
+
+.btn {
+  background-color: #F17105;
+  border-color: #F17105;
+}
+
+.btn:hover {
+  background-color: #136F63;
+}

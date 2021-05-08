@@ -68,7 +68,7 @@ function InitializeDashboard() {
     // DrawMap();
     DrawDonut();
     DrawBargraph();
-
+    WriteText();
 }
 
 

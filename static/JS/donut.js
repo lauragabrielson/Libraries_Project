@@ -46,9 +46,9 @@ function DrawDonut(state) {
     console.log(staffDistribution);
   
     // set the dimensions and margins of the graph
-    var width = 475
-        height = 475
-        margin = 35;
+    var width = 350
+        height = 350
+        margin = 12;
   
     // The radius of the pieplot is half the width or half the height (smallest one).
     var radius = Math.min(width, height) / 2 - margin;

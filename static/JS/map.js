@@ -80,6 +80,42 @@ d3.json(link).then(function(data) {
           // Call update chart functions
           UpdateBargraph(newState);
           UpdateDonut(newState);
+          UpdateText(newState);
+          console.log("I'm updating the text.")
+//         }
+//       });
+
+//       // Add state pop up if possible
+//       // console.log(data);
+//       // stateName = data.features.properties.name
+//       // Giving each feature a pop-up with information pertinent to it
+//       // layer.bindPopup("<h1>This is a Test</h1>");
+//     } 
+//   }).addTo(myMap);
+  
+//   // // Test rectangle in northern Montana
+//   // L.polygon([[48.84, -110.34], [48.86, -112.36]]).bindTooltip("test", {
+//   //   sticky: true
+//   // }).addTo(myMap);
+
+// });
+
+// // A third d3.json to filter for state pop ups?
+// function StatePopup(state) {
+//   d3.json("/libraries_map").then(function(data) {
+//     // console.log(data);
+    
+//     // Make a list of unique state initials
+//     var states = []
+
+//     for (var i = 0; i < data.length; i++) {
+//       var state = data[i].state;
+//       states.push(state);
+//     };
+//     // Thank you Vamsi on Stack Overflow https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+//     states = states.filter((x, i, a) => a.indexOf(x) == i) 
+//     console.log(states)
+
 
           // Call function to create markerclusters
           libraryClusterMarkers(newState);
