@@ -17,6 +17,11 @@ html {
   margin-bottom: 30px;
 }
 
+#bar {
+  height: 350px;
+  margin-bottom: 30px;
+}
+
 .carousel {
   position: relative;
   text-align: center;
@@ -26,6 +31,8 @@ html {
   font-size: 24px;
   color: white;
   padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 30px;
 }
 
 h2 {
@@ -60,4 +67,13 @@ h3 {
 #staff {
   margin-top: -5px;
   padding: 0;
+}
+
+.btn {
+  background-color: #F17105;
+  border-color: #F17105;
+}
+
+.btn:hover {
+  background-color: #136F63;
 }

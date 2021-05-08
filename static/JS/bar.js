@@ -175,8 +175,10 @@ d3.json("/libraries_bar").then(function (data) {
         opacity: 0.8
     };
 
+    var config = {responsive: true};
+
     // Create the plot
-    Plotly.newPlot("bar", data, layout); 
+    Plotly.newPlot("bar", data, layout, config); 
 });
 // }
 };
@@ -354,9 +356,11 @@ function UpdateBargraph(state) {
             paper_bgcolor: "#DCDCDC",
             opacity: 0.8
         };
-    
+        
+        var config = {responsive: true};
+        
         // Create the plot
-        Plotly.newPlot("bar", data, layout); 
+        Plotly.newPlot("bar", data, layout, config); 
     });
     // }
     };
