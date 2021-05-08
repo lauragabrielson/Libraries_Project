@@ -166,7 +166,7 @@ d3.json("/libraries_bar").then(function (data) {
             tickcolor: '#000'
           },
 
-        title: ("All States"),
+        title: ("Collections: All States"),
 
         // xaxis: { title: "Collection Total"},
         barmode: "stack",
@@ -348,7 +348,7 @@ function UpdateBargraph(state) {
                 tickcolor: '#000'
               },
     
-            title: (`State: ${state}`),
+            title: (`Collections: ${state}`),
     
             // xaxis: { title: "Collection Total"},
             barmode: "stack",
