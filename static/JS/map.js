@@ -20,6 +20,7 @@ accessToken: API_KEY
 
 // Use this link to get the json data.
 // Many thanks to Eric Celeste for the geojson of state boundaries https://eric.clst.org/tech/usgeojson/
+// And many additional thanks to the Census Bureau for the data provided to Eric in his creation of the geojson
 var link = "static/data/us_states.json";
 
 // Re-keying geojson code for clean up and adding call to function defined below
