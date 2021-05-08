@@ -77,3 +77,8 @@ h3 {
 .btn:hover {
   background-color: #136F63;
 }
+
+.leaflet-control {
+  background-color: rgba(219, 219, 219, 0.5);
+  padding: 8px;
+}
