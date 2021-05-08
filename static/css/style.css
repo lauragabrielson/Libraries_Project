@@ -25,7 +25,7 @@ html {
 #p1{
   font-size: 24px;
   color: white;
-  padding-left: 20%;
+  padding-left: 10%;
 }
 
 h2 {
@@ -36,11 +36,21 @@ h6 {
   color: white;
 }
 
-.header {
+h1 {
   color: white;
   padding-left: 3rem !important;
   padding-right: 3rem !important;
   font-family: Garamond;
+  text-align: left;
+  float: left;
+}
+
+h3 {
+  color: white;
+  font-family: Garamond;
+  text-align: right;
+  float: right;
+  padding-right: 7rem !important;
 }
 
 #donut {
