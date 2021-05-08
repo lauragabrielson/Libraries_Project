@@ -48,14 +48,13 @@ function WriteText(state) {
         return sum;
     };
   
-    // var stateName = data => {
-    //     data[0].state_name;
-    //     console.log(stateName);
-    // };
 
     // load data
     d3.json('/libraries_summary').then(data => {
         console.log(data);
+
+        var stateName = data[0].state_name;
+        console.log(stateName);
 
         var MLSlibrarians = Math.round(MLSlibrarianSum(data) * 100) / 100;
         var librarians = Math.round(librarianSum(data) * 100) / 100;
@@ -76,9 +75,6 @@ function WriteText(state) {
 
         var perCapitaRevenue = totalRevenue / servicePop;
         console.log(`Per capita revenue ${perCapitaRevenue}`);
-
-        var stateName = data.state_name;
-        console.log(stateName);
 
         var summaryText = (`In the state of ${stateName}, there are ${totalLibraries} libraries or library systems serving approximately
             ${servicePop} people. The total combined budget for libraries in ${stateName} is $${totalRevenue}, or roughly
