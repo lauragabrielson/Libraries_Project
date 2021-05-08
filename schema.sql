@@ -40,18 +40,9 @@ physical_video float,
 downloadable_video float
 );
 
-select * from libraries;
+-- select * from libraries;
 
-select * from libraries 
-where lon=0;
 
-select * from libraries 
-where lat=0;
-
-select * from libraries 
-where state='MN';
-
-drop table libraries;
 
 
 
