@@ -6,6 +6,9 @@ var myMap = L.map("map", {
   zoom: 4
 });
 
+var formatNumber = num => {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  };
 
 // Add tile layer
 
@@ -185,7 +188,7 @@ function stateSummary(state) {
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (filteredData) {
-        this._div.innerHTML = '<h4>Libraries Summary</h4>' +  state + '<h4>Service Population</h4>' + servicePop + '<h4>Bookmobiles</h4>' + bookmobiles;
+        this._div.innerHTML = '<h4>Libraries Summary</h4>' +  state + '<h4>Service Population</h4>' + formatNumber(servicePop) + '<h4>Bookmobiles</h4>' + bookmobiles;
     };
 
     info.addTo(myMap);
