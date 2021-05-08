@@ -82,7 +82,7 @@ function WriteText(state) {
         };
         var summaryText = (`In the United States, there are ${formatNum(totalLibraries)} libraries or library systems serving approximately
             ${formatNum(servicePop)} people. The total combined budget for all libraries in the US is $${formatNum(totalRevenue)}, or roughly
-            $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the US are credentialled librarians.`);
+            $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the US are librarians.`);
 
         document.getElementById("p1").innerHTML = summaryText;
     })
@@ -172,7 +172,7 @@ function UpdateText(state) {
 
         var summaryText = (`In the state of ${stateName}, there are ${formatNum(totalLibraries)} libraries or library systems serving approximately
             ${formatNum(servicePop)} people. The total combined budget for libraries in ${stateName} is $${formatNum(totalRevenue)}, or roughly
-            $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the state are credentialled librarians.`);
+            $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the state are librarians.`);
 
         document.getElementById("p1").innerHTML = summaryText;
     })
