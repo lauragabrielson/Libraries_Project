@@ -76,9 +76,9 @@ function WriteText(state) {
         var perCapitaRevenue = totalRevenue / servicePop;
         console.log(`Per capita revenue ${perCapitaRevenue}`);
 
-        var summaryText = (`In the state of ${stateName}, there are ${totalLibraries} libraries or library systems serving approximately
-            ${servicePop} people. The total combined budget for libraries in ${stateName} is $${totalRevenue}, or roughly
-            $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the state are credentialled librarians.`);
+        var summaryText = (`In the United States, there are ${totalLibraries} libraries or library systems serving approximately
+            ${servicePop} people. The total combined budget for all libraries in the US is $${totalRevenue}, or roughly
+            $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the US are credentialled librarians.`);
 
         document.getElementById("p1").innerHTML = summaryText;
     })
@@ -86,5 +86,87 @@ function WriteText(state) {
 };
 
 function UpdateText(state) {
-    // This is where we respond to a click event
+   
+    // This is where we update the text
+   
+    // load data
+    d3.json('/libraries_summary').then(data => {
+
+        console.log(data);
+
+         // Filter data by input state
+        var result = data.filter(d => d.state_name === state);
+    
+        console.log(result);
+        console.log(state);
+
+        var MLSlibrarianSum = result => {
+            sum = 0;
+            for (var i = 0; i < result.length; i++) {
+                sum += result[i].mls_librarians;
+            };
+            return sum;
+        };
+
+        var librarianSum = result => {
+            sum = 0;
+            for (var i = 0; i < result.length; i++) {
+                sum += result[i].librarians;
+            };
+            return sum;
+        };
+    
+        var totalStaffSum = result => {
+            sum = 0;
+            for (var i = 0; i < result.length; i++) {
+                sum += result[i].total_staff;
+            };
+            return sum;
+        };
+    
+        var totalServicePop = result => {
+            sum = 0
+            for (var i = 0; i < result.length; i++) {
+                sum += result[i].services_population;
+            };
+            return sum;
+        };
+    
+        var totalStateRevenue = result => {
+            sum = 0;
+            for (var i = 0; i < result.length; i++) {
+                sum += result[i].total_operating_revenue;
+            };
+            return sum;
+        };
+        var stateName = result[0].state_name;
+        console.log(stateName);
+
+        var MLSlibrarians = Math.round(MLSlibrarianSum(result) * 100) / 100;
+        var librarians = Math.round(librarianSum(result) * 100) / 100;
+        var totalStaff = Math.round(totalStaffSum(result) * 100) / 100;
+
+        var totalLibrarians = MLSlibrarians + librarians;
+        console.log(`Total librarians: ${totalLibrarians}`);
+    
+        var librarianPercent = (totalLibrarians / totalStaff) * 100;
+        console.log(`Librarian percentage: ${librarianPercent}`);
+
+        var totalLibraries = result.length;
+        console.log(`Number of libraries: ${totalLibraries}`);
+
+        var totalRevenue = Math.round(totalStateRevenue(result) * 100) / 100;
+        var servicePop = Math.round(totalServicePop(result) * 100) /100;
+
+
+        var perCapitaRevenue = totalRevenue / servicePop;
+        console.log(`Per capita revenue ${perCapitaRevenue}`);
+
+        var summaryText = (`In the state of ${stateName}, there are ${totalLibraries} libraries or library systems serving approximately
+            ${servicePop} people. The total combined budget for libraries in ${stateName} is $${totalRevenue}, or roughly
+            $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the state are credentialled librarians.`);
+
+        document.getElementById("p1").innerHTML = summaryText;
+    })
+
 };

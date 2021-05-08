@@ -78,7 +78,8 @@ d3.json(link).then(function(data) {
           // Call update chart functions
           UpdateBargraph(newState);
           UpdateDonut(newState);
-          WriteText(newState);
+          UpdateText(newState);
+          console.log("I'm updating the text.")
         }
       });
 
