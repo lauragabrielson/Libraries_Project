@@ -24,10 +24,10 @@ function WriteText(state) {
         return sum;
     };
 
-    var totalStaffSum = data => {
+    var employeesSum = data => {
         sum = 0;
         for (var i = 0; i < data.length; i++) {
-            sum += data[i].total_staff;
+            sum += data[i].employees;
         };
         return sum;
     };
@@ -58,7 +58,8 @@ function WriteText(state) {
 
         var MLSlibrarians = Math.round(MLSlibrarianSum(data) * 100) / 100;
         var librarians = Math.round(librarianSum(data) * 100) / 100;
-        var totalStaff = Math.round(totalStaffSum(data) * 100) / 100;
+        var employees = Math.round(employeesSum(data) * 100) / 100;
+        var totalStaff = employees + librarians + MLSlibrarians;
 
         var totalLibrarians = MLSlibrarians + librarians;
         console.log(`Total librarians: ${totalLibrarians}`);
@@ -120,10 +121,10 @@ function UpdateText(state) {
             return sum;
         };
     
-        var totalStaffSum = result => {
+        var employeesSum = result => {
             sum = 0;
             for (var i = 0; i < result.length; i++) {
-                sum += result[i].total_staff;
+                sum += result[i].employees;
             };
             return sum;
         };
@@ -148,7 +149,8 @@ function UpdateText(state) {
 
         var MLSlibrarians = Math.round(MLSlibrarianSum(result) * 100) / 100;
         var librarians = Math.round(librarianSum(result) * 100) / 100;
-        var totalStaff = Math.round(totalStaffSum(result) * 100) / 100;
+        var employees = Math.round(employeesSum(result) * 100) / 100;
+        var totalStaff = employees + librarians + MLSlibrarians;
 
         var totalLibrarians = MLSlibrarians + librarians;
         console.log(`Total librarians: ${totalLibrarians}`);
