@@ -63,21 +63,25 @@ function WriteText(state) {
         var totalLibrarians = MLSlibrarians + librarians;
         console.log(`Total librarians: ${totalLibrarians}`);
     
-        var librarianPercent = (totalLibrarians / totalStaff) * 100;
+        var librarianPercent = Math.round((totalLibrarians / totalStaff) * 100);
         console.log(`Librarian percentage: ${librarianPercent}`);
 
         var totalLibraries = data.length;
+        
         console.log(`Number of libraries: ${totalLibraries}`);
 
         var totalRevenue = Math.round(totalStateRevenue(data) * 100) / 100;
         var servicePop = Math.round(totalServicePop(data) * 100) /100;
+       
 
-
-        var perCapitaRevenue = totalRevenue / servicePop;
+        var perCapitaRevenue = Math.round(totalRevenue / servicePop);
         console.log(`Per capita revenue ${perCapitaRevenue}`);
-
-        var summaryText = (`In the United States, there are ${totalLibraries} libraries or library systems serving approximately
-            ${servicePop} people. The total combined budget for all libraries in the US is $${totalRevenue}, or roughly
+        
+        function formatNum(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+        var summaryText = (`In the United States, there are ${formatNum(totalLibraries)} libraries or library systems serving approximately
+            ${formatNum(servicePop)} people. The total combined budget for all libraries in the US is $${formatNum(totalRevenue)}, or roughly
             $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the US are credentialled librarians.`);
 
         document.getElementById("p1").innerHTML = summaryText;
@@ -149,7 +153,7 @@ function UpdateText(state) {
         var totalLibrarians = MLSlibrarians + librarians;
         console.log(`Total librarians: ${totalLibrarians}`);
     
-        var librarianPercent = (totalLibrarians / totalStaff) * 100;
+        var librarianPercent = Math.round((totalLibrarians / totalStaff) * 100);
         console.log(`Librarian percentage: ${librarianPercent}`);
 
         var totalLibraries = result.length;
@@ -159,11 +163,15 @@ function UpdateText(state) {
         var servicePop = Math.round(totalServicePop(result) * 100) /100;
 
 
-        var perCapitaRevenue = totalRevenue / servicePop;
+        var perCapitaRevenue = Math.round(totalRevenue / servicePop);
         console.log(`Per capita revenue ${perCapitaRevenue}`);
 
-        var summaryText = (`In the state of ${stateName}, there are ${totalLibraries} libraries or library systems serving approximately
-            ${servicePop} people. The total combined budget for libraries in ${stateName} is $${totalRevenue}, or roughly
+        function formatNum(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+
+        var summaryText = (`In the state of ${stateName}, there are ${formatNum(totalLibraries)} libraries or library systems serving approximately
+            ${formatNum(servicePop)} people. The total combined budget for libraries in ${stateName} is $${formatNum(totalRevenue)}, or roughly
             $${perCapitaRevenue} per person served. ${librarianPercent}% of library employees in the state are credentialled librarians.`);
 
         document.getElementById("p1").innerHTML = summaryText;
