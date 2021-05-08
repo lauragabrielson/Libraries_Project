@@ -1,5 +1,6 @@
-console.log('donut.js loaded');
+// console.log('donut.js loaded');
 
+// Three functions that sum each category
 var employeeSum = data => {
   sum = 0;
   for (var i = 0; i < data.length; i++) {
@@ -24,10 +25,12 @@ var MLSlibrarianSum = data => {
   return sum;
 };
 
+// function that formats numbers to string with commas.
 var formatNumber = num => {
 return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 };
 
+// draw initial Donut chart with all data.
 function DrawDonut(state) {
 
   // load data
@@ -39,8 +42,6 @@ function DrawDonut(state) {
     var librarians = Math.round(librarianSum(data) * 100) / 100;
     var MLSlibrarians = Math.round(MLSlibrarianSum(data) * 100) / 100;
     var totalStaff = employees + librarians + MLSlibrarians
-
-    // employees = formatNumber(employees);
 
     // console.log(employees);
 
@@ -81,7 +82,7 @@ function DrawDonut(state) {
       .style("border-radius", "5px")
       .style("padding", "5px")
 
-    // Three function that change the tooltip when user hover / move / leave a cell
+    // Three functions that control the tooltip
     var mouseover = function(d) {
       Tooltip
         .style("opacity", 1)
@@ -104,7 +105,7 @@ function DrawDonut(state) {
           ${Math.round((d.data.value / totalStaff) * 100)}%</center>`
           )
         .style("left", (d3.mouse(this)[0]+275) + "px")
-        .style("top", (d3.mouse(this)[1]+250) + "px")
+        .style("top", (d3.mouse(this)[1]+260) + "px")
     }
 
     var mouseleave = function(d) {
@@ -122,14 +123,6 @@ function DrawDonut(state) {
           .cornerRadius(10)
         )
     }
-  
-    // pieGroup.append('text')
-    //   // .attr('dy', '.25em')
-    //   .style('text-anchor', 'middle')
-    //   .style('font-size', '75px')
-    //   .attr('class', 'inside')
-    //   .attr('y', 25)
-    //   .text(`${compliancePercentage}%`);
   
     // Compute the position of each group on the pie
     var pie = d3.pie()
@@ -163,6 +156,7 @@ function DrawDonut(state) {
       .on('mousemove', mousemove)
       .on('mouseleave', mouseleave);
 
+    // Add one dot in the legend for each name.
     pieGroup.selectAll("dots")
       .data(keys)
       .enter()
@@ -172,7 +166,7 @@ function DrawDonut(state) {
         .attr("r", 10)
         .style("fill", function(d){ return colorScheme(d)});
 
-    // Add one dot in the legend for each name.
+    // Add label for each dot.
     pieGroup.selectAll("labels")
       .data(keys)
       .enter()
@@ -186,6 +180,7 @@ function DrawDonut(state) {
     });
 };
 
+// draw Donut chart with filtered data by state.
 function UpdateDonut(state) {
 
   // load data
@@ -240,7 +235,7 @@ function UpdateDonut(state) {
       .style("border-radius", "5px")
       .style("padding", "5px")
 
-    // Three function that change the tooltip when user hover / move / leave a cell
+    // Three functions that control the tooltip
     var mouseover = function(d) {
       Tooltip
         .style("opacity", 1)
@@ -259,11 +254,11 @@ function UpdateDonut(state) {
       Tooltip
         .html(
           `<center><b>${d.data.key}</b> </br>
-          ${d.data.value} FTE </br>
+          ${formatNumber(d.data.value)} FTE </br>
           ${Math.round((d.data.value / totalStaff) * 100)}%</center>`
           )
         .style("left", (d3.mouse(this)[0]+275) + "px")
-        .style("top", (d3.mouse(this)[1]+250) + "px")
+        .style("top", (d3.mouse(this)[1]+260) + "px")
     }
 
     var mouseleave = function(d) {
@@ -281,7 +276,7 @@ function UpdateDonut(state) {
           .cornerRadius(10)
         )
     }
-  
+
     // Compute the position of each group on the pie
     var pie = d3.pie()
       .value(function(d) {return d.value; });
@@ -305,19 +300,16 @@ function UpdateDonut(state) {
         .outerRadius(radius)
         .cornerRadius(10)
       )
-      .attr('fill', function(d, i) 
+      .attr('fill', function(d, i)
         { return( colorScheme(d.data.key) )
         })
-      // .attr('id', function (d) { return d.data.key;})
-      // .attr('data', function (d) { console.log(d.data.value); return d.data.value;})
-      // .attr("stroke", "white")
-      // .style("stroke-width", "2px")
       .style('border-radius', '20px')
       .style("opacity", .9)
       .on('mouseover', mouseover)
       .on('mousemove', mousemove)
       .on('mouseleave', mouseleave);
 
+    // Add one dot in the legend for each name.
     pieGroup.selectAll("dots")
       .data(keys)
       .enter()
@@ -327,7 +319,7 @@ function UpdateDonut(state) {
         .attr("r", 10)
         .style("fill", function(d){ return colorScheme(d)});
 
-    // Add one dot in the legend for each name.
+    // Add label for each dot.
     pieGroup.selectAll("labels")
       .data(keys)
       .enter()
