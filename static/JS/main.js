@@ -7,7 +7,7 @@ function InitializeDashboard() {
     DrawDonut();
     DrawBargraph();
     WriteText();
-}
+};
 
 
 InitializeDashboard(); 
