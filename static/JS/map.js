@@ -181,7 +181,7 @@ function stateSummary(state) {
 
     // Filter the data by state
     var testState = "Iowa";
-    var filteredData = data.filter(d => d.state_name === testState);
+    var filteredData = data.filter(d => d.state_name === state);
     console.log("popup test")
     console.log(filteredData);
 
