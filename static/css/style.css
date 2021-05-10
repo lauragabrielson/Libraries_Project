@@ -23,16 +23,19 @@ html {
 }
 
 .carousel {
-  position: relative;
+  text-align: center;
+  /* padding-left: 10%; */
+}
+
+.carousel-image {
   text-align: center;
 }
 
-#p1{
+#p1 {
   font-size: 24px;
   color: white;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-bottom: 20px;
+  /* padding-left: 10%; */
+  /* padding-right: 10%; */
 }
 
 h2 {
@@ -72,13 +75,21 @@ h3 {
 .btn {
   background-color: #F17105;
   border-color: #F17105;
+  color: white;
 }
 
 .btn:hover {
   background-color: #136F63;
+  border-color:#136F63;
+  color: white;
 }
 
 .leaflet-control {
   background-color: rgba(219, 219, 219, 0.5);
   padding: 8px;
+}
+
+#toggle {
+  padding-left: 5%;
+  padding-right: 5%;
 }
