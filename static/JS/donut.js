@@ -88,7 +88,7 @@ function DrawDonut(state) {
         .style("opacity", 1)
       d3.select(this)
         .transition()
-        .duration(175)
+        .duration(600)
         .style("opacity", 1)
         .attr('d', d3.arc()
           .innerRadius(radius - 70)
@@ -153,8 +153,7 @@ function DrawDonut(state) {
       .attr('fill', function(d, i) 
         { return( colorScheme(d.data.key) )
         })
-      .transition().delay(function(d,i) {
-        return i * 450; }).duration(450)
+      .transition().duration(750)
       .attrTween('d', function(d) {
         var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
         return function(t) {
@@ -315,8 +314,7 @@ function UpdateDonut(state) {
       .attr('fill', function(d, i) 
         { return( colorScheme(d.data.key) )
         })
-      .transition().delay(function(d,i) {
-        return i * 500; }).duration(500)
+      .transition().duration(600)
       .attrTween('d', function(d) {
         var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
         return function(t) {
