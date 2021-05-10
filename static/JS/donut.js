@@ -91,7 +91,7 @@ function DrawDonut(state) {
         .duration(175)
         .style("opacity", 1)
         .attr('d', d3.arc()
-          .innerRadius(110)
+          .innerRadius(radius - 70)
           .outerRadius(radius + 10)
           .cornerRadius(10)
         )
@@ -118,11 +118,16 @@ function DrawDonut(state) {
         .duration(175)
         .style("opacity", .9)
         .attr('d', d3.arc()
-          .innerRadius(120)
+          .innerRadius(radius - 60)
           .outerRadius(radius)
           .cornerRadius(10)
         )
     }
+
+    var drawArc = d3.arc()
+        .innerRadius(radius - 60)
+        .outerRadius(radius)
+        .cornerRadius(10);
   
     // Compute the position of each group on the pie
     var pie = d3.pie()
@@ -134,7 +139,7 @@ function DrawDonut(state) {
     // set the color scheme
     var colorScheme = d3.scaleOrdinal()
       .domain(staffDistribution)
-      .range(['#136F63', '#E0CA3C', '#F17105']);
+      .range(['#E0CA3C', '#F17105', '#136F63']);
   
     // draw the pie chart
     slicesGroup = pieGroup
@@ -142,19 +147,23 @@ function DrawDonut(state) {
       .data(staffDistributionReady)
       .enter()
       .append('path')
-      .attr('d', d3.arc()
-        .innerRadius(120)
-        .outerRadius(radius)
-        .cornerRadius(10)
-      )
+      .on('mouseover', mouseover)
+      .on('mousemove', mousemove)
+      .on('mouseleave', mouseleave)
       .attr('fill', function(d, i) 
         { return( colorScheme(d.data.key) )
         })
+      .transition().delay(function(d,i) {
+        return i * 450; }).duration(450)
+      .attrTween('d', function(d) {
+        var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+        return function(t) {
+          d.endAngle = i(t); 
+          return drawArc(d)
+          }
+        })
       .style('border-radius', '20px')
-      .style("opacity", .9)
-      .on('mouseover', mouseover)
-      .on('mousemove', mousemove)
-      .on('mouseleave', mouseleave);
+      .style("opacity", .9);
 
     // Add one dot in the legend for each name.
     pieGroup.selectAll("dots")
@@ -244,7 +253,7 @@ function UpdateDonut(state) {
         .duration(175)
         .style("opacity", 1)
         .attr('d', d3.arc()
-          .innerRadius(110)
+          .innerRadius(radius - 70)
           .outerRadius(radius + 10)
           .cornerRadius(10)
         )
@@ -271,11 +280,16 @@ function UpdateDonut(state) {
         .duration(175)
         .style("opacity", .9)
         .attr('d', d3.arc()
-          .innerRadius(120)
+          .innerRadius(radius - 60)
           .outerRadius(radius)
           .cornerRadius(10)
         )
     }
+
+    var drawArc = d3.arc()
+        .innerRadius(radius - 60)
+        .outerRadius(radius)
+        .cornerRadius(10);
 
     // Compute the position of each group on the pie
     var pie = d3.pie()
@@ -287,7 +301,7 @@ function UpdateDonut(state) {
     // set the color scheme
     var colorScheme = d3.scaleOrdinal()
       .domain(staffDistribution)
-      .range(['#136F63', '#E0CA3C', '#F17105']);
+      .range(['#E0CA3C', '#F17105', '#136F63']);
   
     // draw the pie chart
     slicesGroup = pieGroup
@@ -295,19 +309,23 @@ function UpdateDonut(state) {
       .data(staffDistributionReady)
       .enter()
       .append('path')
-      .attr('d', d3.arc()
-        .innerRadius(120)
-        .outerRadius(radius)
-        .cornerRadius(10)
-      )
-      .attr('fill', function(d, i)
-        { return( colorScheme(d.data.key) )
-        })
-      .style('border-radius', '20px')
-      .style("opacity", .9)
       .on('mouseover', mouseover)
       .on('mousemove', mousemove)
-      .on('mouseleave', mouseleave);
+      .on('mouseleave', mouseleave)
+      .attr('fill', function(d, i) 
+        { return( colorScheme(d.data.key) )
+        })
+      .transition().delay(function(d,i) {
+        return i * 500; }).duration(500)
+      .attrTween('d', function(d) {
+        var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+        return function(t) {
+          d.endAngle = i(t); 
+          return drawArc(d)
+          }
+        })
+      .style('border-radius', '20px')
+      .style("opacity", .9);
 
     // Add one dot in the legend for each name.
     pieGroup.selectAll("dots")
