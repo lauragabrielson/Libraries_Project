@@ -1,5 +1,9 @@
 # Libraries_Project
-Analysis of libraries across the United States
+## An Analysis of Libraries Across the United States
+#### University of Minnesota Data Visualization & Analysis Boot Camp
+Laura Gabrielson, Beau Jeffrey, Melissa Lowe, Stephanie Richards
+
+![Franklin Library Reading Room, Minneapolis](/static/images/franklin-library.jpg)
 
 ## Instructions for creating our United States Libraries database and running the website that displays it's data.
 
