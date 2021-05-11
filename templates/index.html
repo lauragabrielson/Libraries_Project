@@ -52,41 +52,22 @@
       
       <div class="col-12 col-md-5 text-justify" id="toggle">
         <a class="btn button-primary" data-toggle="collapse" href="#p1" role="button" aria-expanded="true" aria-controls="toggleCollapse">Summary (click to close)</a>
-        <a class="btn button-primary" data-toggle="collapse" href="#slick-carousel" role="button" aria-expanded="false" aria-controls="toggleCollapse">Library Trivia (click to open/close)</a>
+        <a class="btn button-primary" data-toggle="collapse" href="#slick-carousel" id="slick-button" role="button" aria-expanded="false" aria-controls="toggleCollapse">Library Trivia (click to open/close)</a>
         
-        <div class="collapse show multi-collapse" id="p1">
-        </div>
+        <div class="collapse show multi-collapse" id="p1"></div>
 
         <div class="collapse multi-collapse" id="slick-carousel" style="width: 425px">
           <div id="slick-carousel">
             <div class="slick">
-              <div class="carousel">
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/guinness_book.png') }}" alt="Guinness Book of Records">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/ronald_mcnair.png') }}" alt="Ronald Edwin McNair">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/library_of_congress.png') }}" alt="Library of Congress">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/beinecke_rare_book.png') }}" alt="Beinecke Rare Book Library">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/federal_depository.png') }}" alt="Federal Depositories">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/haskell_library.png') }}" alt="Haskell Library Border Line">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/mafra_palace.png') }}" alt="Mafra Palace Library Bats">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/biblioburro.png') }}" alt="Biblioburros">
-              </div>  
-              <div class="carousel">  
-                <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/human_library.png') }}" alt="The Human Library">
-              </div>  
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/guinness_book.png') }}" alt="Guinness Book of Records">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/ronald_mcnair.png') }}" alt="Ronald Edwin McNair">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/library_of_congress.png') }}" alt="Library of Congress">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/beinecke_rare_book.png') }}" alt="Beinecke Rare Book Library">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/federal_depository.png') }}" alt="Federal Depositories">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/haskell_library.png') }}" alt="Haskell Library Border Line">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/mafra_palace.png') }}" alt="Mafra Palace Library Bats">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/biblioburro.png') }}" alt="Biblioburros">
+              <img class="carousel-image" src="{{ url_for('static', filename='carousel_images/human_library.png') }}" alt="The Human Library">
             </div> 
           </div>
         </div>
