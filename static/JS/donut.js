@@ -77,10 +77,9 @@ function DrawDonut(state) {
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "2px")
-      .style("border-radius", "5px")
-      .style("padding", "5px")
+      .style("border-radius", "10px")
+      .style("box-shadow", "2px 2px 15px 1px")
+      .style("padding", "10px")
 
     // Three functions that control the tooltip
     var mouseover = function(d) {
@@ -238,10 +237,9 @@ function UpdateDonut(state) {
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "2px")
-      .style("border-radius", "5px")
-      .style("padding", "5px")
+      .style("box-shadow", "2px 2px 15px 1px")
+      .style("border-radius", "10px")
+      .style("padding", "10px")
 
     // Three functions that control the tooltip
     var mouseover = function(d) {
